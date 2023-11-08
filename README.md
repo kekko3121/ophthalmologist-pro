@@ -10,3 +10,9 @@ We recommend viewing the video presentation to better understand the initial ide
 We thank you for your attention
 
 For more information you can see [here](https://www.canva.com/design/DAFzecUFK9o/LKdGAOtrRE8llqDKK-iyHQ/edit?utm_content=DAFzecUFK9o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton "Project slides")
+
+## Authors
+
+- [@kekko3121](https://github.com/kekko3121)
+- [@TonIann7](https://github.com/TonIann7)
+- [@luajez](https://github.com/luajez)
