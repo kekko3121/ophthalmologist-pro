@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+
+        body{
+            margin: 20px;
+        }
+
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .login-box{
+            margin: 50px auto;
+            margin-top: 200px;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        h1{
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        label{
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type = "text"],
+        input[type = "password"]{
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .check{
+            margin-bottom: 10px;
+        }
+
+        .check label{
+            margin-top: 5px;
+        }
+        
+        input[type = "submit"]{
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 18px;
+            background-color: #007bff;
+
+        }
+
+        input[type = "submit"]:hover{
+            background-color: #006;
+        }
+
+    </style>
+</head>
+<body>
+    <div class = "login-box">
+        <h1>Login User</h1>
+        <form>
+            <label for = "username">Username:</label>
+            <input type = "text" name = "username" placeholder="Enter your username">
+            <label for = "password">Password:</label>
+            <input type = "password" name = "password" placeholder = "Enter your password">
+            <div class = "check">
+                <input type = "checkbox" name = "remember">
+                <label for = "remember">Remember</label>
+            </div>
+            <input type = "submit" value = "Login">
+        </form>
+    </div>
+</body>
+</html>
