@@ -6,10 +6,6 @@
     <title>Login</title>
     <style>
 
-        body{
-            margin: 20px;
-        }
-
         *{
             margin: 0px;
             padding: 0px;
@@ -18,9 +14,10 @@
         }
 
         .login-box{
+            position:  relative;
             margin: 50px auto;
-            margin-top: 200px;
-            max-width: 500px;
+            margin-top: 100px;
+            max-width: 450px;
             background-color: #fff;
             padding: 30px;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
@@ -46,10 +43,25 @@
         input[type = "text"],
         input[type = "password"]{
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
+        }
+
+        form #username_error,
+        form #pass_error{
+            margin-bottom: 10px;
+            width: 345px;
+            font-size: 18px;
+            color: #C62828;
+            background: rgba(255, 0, 0, 0.1);
+            text-align: center;
+            padding: 5px 8px;
+            border-radius: 3px;
+            border: 1px #EF9A9A;
+            border-radius: 5px;
+            display: none;
         }
         
         .check{
@@ -67,7 +79,7 @@
             color: #fff;
             font-size: 18px;
             background-color: #007bff;
-
+            transition: .5s;
         }
 
         input[type = "submit"]:hover{
@@ -79,17 +91,51 @@
 <body>
     <div class = "login-box">
         <h1>Login User</h1>
-        <form>
+        <form name= "login" onsubmit="return Validation()">
             <label for = "username">Username:</label>
-            <input type = "text" name = "username" placeholder="Enter your username">
+            <input type = "text" name = "username"  id ="username" placeholder="Enter your username">
+            <div id = "username_error">Please fill up your Username</div>
             <label for = "password">Password:</label>
-            <input type = "password" name = "password" placeholder = "Enter your password">
+            <input type = "password" name = "password" id = "password" placeholder = "Enter your password">
+            <div id = "pass_error">Please fill up your password</div>
             <div class = "check">
                 <input type = "checkbox" name = "remember">
                 <label for = "remember">Remember</label>
             </div>
-            <input type = "submit" value = "Login">
+            <input type = "submit" id = "submit" value = "Login">
         </form>
     </div>
+
+    <script>
+        //Validation Code for input field form
+
+        //variables to store form data
+        const username = document.querySelector('#username');
+        const password = document.querySelector('#password')
+        const submit = document.querySelector('#submit');
+
+        //interacts with the click event of the login button
+        submit.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            //Username Validation
+            if(username.value.trim() == ''){
+                error(username, '#username_error');
+            }
+
+            //password Validation
+            if(password.value.trim() == ''){
+                error(password, '#pass_error');
+            }
+        });
+
+        function error(element, message){
+            element.style.border = '2px red solid';
+            const parent = element.parentElement;
+            const username_error = parent.querySelector(message);
+            username_error.style.display = 'block';
+        }
+        
+    </script>
 </body>
 </html>
