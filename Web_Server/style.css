@@ -32,14 +32,10 @@
 
 .string {
     text-align: center;
-    animation: move 4s infinite;
-}
-
-.greeting {
-    position: relative;
-    top: 7.9vmin;
-    animation: white-out 5s infinite;
     white-space: nowrap;
+    top: 7.9vmin;
+    position: relative;
+    animation: move 4s infinite;
 }
 
 .prog::after {
@@ -57,7 +53,6 @@
     position: absolute;
     height: 25vmin;
     width: 70vmin;
-    background: #282c34;
     transform: translate(-64vmin, 5vmin);
     background: #282c34;
 }
