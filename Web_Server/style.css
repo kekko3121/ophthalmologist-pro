@@ -7,29 +7,19 @@
     padding: 0;
 }
 
-.titlepage{
-    position: relative;
-    top: 20%;
-    left: 100%;
-}
-
 .animation {
-
-
     background: #282c34;
     font-size: 2vmin;
     font-family: JetBrains Mono, monospace;
     height: 60vh;
     width: 55vw;
     display: flex;
-    justify-content: center;
     align-items: center;
     color: #e4bb68;
     position: absolute;
     top: 20%;
     left: 30%;
     transform: translate(-50%, -50%);
-
 }
 
 .home{
@@ -41,31 +31,28 @@
 }
 
 .string {
-    display: flex;
-    flex-direction: column;
     text-align: center;
     animation: move 4s infinite;
-
 }
 
 .greeting {
     position: relative;
     top: 7.9vmin;
     animation: white-out 5s infinite;
+    white-space: nowrap;
 }
 
-.closure::after {
+.prog::after {
     content: '';
     position: absolute;
-    height: 25vmin;
+    height: 27vmin;
     width: 65vmin;
     transform: translate(-66vmin, -24.5vmin);
-    top: 45%;
-    left: 95%;
+    top: 40%;
     background: #282c34;
 }
 
-.closure::before {
+.prog::before {
     content: '';
     position: absolute;
     height: 25vmin;
@@ -216,8 +203,6 @@
     font-weight: bold;
     font-family: "Anonymous Pro", monospace;
     letter-spacing: 7px;
-    overflow: hidden;
-    border-right: 4px solid hsl(0, 0%, 80%);
     white-space: nowrap;
     animation: typewriter 4s steps(44) 1s 1 normal both,
     blinkTextCursor 500ms infinite;
