@@ -5,6 +5,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .animation {
@@ -12,21 +13,18 @@
     font-size: 2vmin;
     font-family: JetBrains Mono, monospace;
     height: 60vh;
-    width: 55vw;
-    display: flex;
+    width: 57vw;
+    display: inline-flex;
     align-items: center;
     color: #e4bb68;
     position: absolute;
-    top: 20%;
-    left: 30%;
-    transform: translate(-50%, -50%);
+    transform: translate(2%, -20%);
 }
 
 .home{
     background: #282c34;
     margin: 0;
     overflow: hidden;
-    background-size: 70% 350%;
     position: static;
 }
 
@@ -193,31 +191,30 @@
     position: absolute;
     top:25%;
     left: 2%;
-    font-size: 2em;
+    font-size: 2.1vw;
     color:white;
     font-weight: bold;
     font-family: "Anonymous Pro", monospace;
-    letter-spacing: 7px;
-    white-space: nowrap;
-    animation: typewriter 4s steps(44) 1s 1 normal both,
-    blinkTextCursor 500ms infinite;
+    letter-spacing: 5px;
+    animation: slideInX 2s ease-out, slideInY 2s ease-out;
 }
 
 
-@keyframes typewriter {
+@keyframes slideInX {
     from {
-        width: 0;
+        transform: translateX(-100%); /* Parte da fuori dalla vista, a sinistra */
     }
     to {
-        width: 1500px;
+        transform: translateX(0); /* Arriva alla posizione originale */
     }
 }
-@keyframes blinkTextCursor {
+
+@keyframes slideInY {
     from {
-        border-right-color: hsl(0, 0%, 80%);
+        transform: translateY(-100%); /* Parte da fuori dalla vista, sopra */
     }
     to {
-        border-right-color: transparent;
+        transform: translateY(0); /* Arriva alla posizione originale */
     }
 }
 
@@ -226,4 +223,23 @@
     font-size: 71px;
     font-weight: bold;
     font-family: "Agency FB";
+}
+
+
+@media (max-width: 768px) {
+    .animation {
+        width: 100%;
+        left: 0;
+    }
+
+    .string {
+        white-space: normal;
+    }
+
+    .bottone,
+    .login,
+    .signup {
+        font-size: 4vw;
+        padding: 2vw 4vw;
+    }
 }
