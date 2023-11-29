@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="dark gizmo" lang="en" style="color-scheme: dark;" xmlns="http://www.w3.org/1999/html">
 <head>
-   <link href="style.css" rel="stylesheet" type="text/css">
+   <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page from Opthamologist PRO</title>
@@ -38,12 +38,12 @@
 
     <div class="access">
         <h3 class="bottone" style="color: #e4bb68">GET<span style="color:#e06c75;"> STARTED</span></h3>
-        <button class="login" type="submit">Log In</button>
-        <button class="signup" type="submit">Sign Up</button>
+        <a href = login><button class="login" type="submit">Log In</button></a>
+        <a href = signup target = "_blank"><button class="signup" type="submit">Sign Up</button></a>
     </div>
     
     <div class="immagine">
-        <img src="oculista.png" width="317px" height="282px">
+        <img src="{{ url_for('static', filename = 'images/oculista.png') }}" width="317px" height="282px">
     </div>
 </body>
 </html>
