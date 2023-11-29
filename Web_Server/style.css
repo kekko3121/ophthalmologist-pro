@@ -84,46 +84,23 @@
     }
 }
 
-.login {
-    background-color: #282c34;
-    color: #e4bb68;
-    padding: 35px 35px;
-    text-align: center;
-    text-decoration: lawngreen;
-    display: compact;
-    font-size: 25px;
-    margin: 5px 5px;
-    cursor: pointer;
-    border-radius: 35px;
-    transition-duration: 0.4s;
-
-
-}
-
+.login,
 .signup {
     background-color: #282c34;
-    color: #e06c75;
-    padding: 35px 35px;
-    text-align: center;
-    text-decoration: lawngreen;
-    display: compact;
-    font-size: 25px;
-    margin: 5px 5px;
+    color: #e4bb68;
+    padding: 2vw 4vw;
+    text-decoration: none;
+    font-size: 2.5vw;
+    margin: 1vw;
     cursor: pointer;
-    border-radius: 35px;
+    border-radius: 5vw;
     transition-duration: 0.4s;
-
-
 }
 
 
-.login:hover {
-    background-color: #e06c75 ; /* Green */
-    color: #61afef;
-}
-
+.login:hover,
 .signup:hover {
-    background-color: #e4bb68 ;
+    background-color: #e4bb68;
     color: #61afef;
 }
 
@@ -220,9 +197,31 @@
 
 .bottone{
     text-align: center;
-    font-size: 71px;
+    font-size: 6vw;
     font-weight: bold;
     font-family: "Agency FB";
+}
+
+.immagine{
+    position: absolute; 
+    left: 65%; 
+    top: 40%;
+    max-width: 100%;
+    height: auto;
+}
+
+.immagine img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    opacity: 100%;
+}
+
+.access{
+    position:absolute; 
+    top: 60%; 
+    left:27%;
+    text-align: center;
 }
 
 
@@ -237,9 +236,20 @@
     }
 
     .bottone,
+    .access,
     .login,
     .signup {
         font-size: 4vw;
         padding: 2vw 4vw;
+    }
+
+    .immagine {
+        left: 50%;
+        top: 35%;
+    }
+
+    .access {
+        top: 70%;
+        left: 50%;
     }
 }
