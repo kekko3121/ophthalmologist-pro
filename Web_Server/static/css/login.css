@@ -8,15 +8,26 @@
 body{
     background-color:#282c34;
 }
+
+.img-container {
+    text-align: center;
+}
+
+.img-container img {
+    display: inline-block; /* Permette di centrare verticalmente */
+    margin-top: 20px; /* Regola la distanza dall'alto */
+    border-radius: 10px;
+}
 .login-box{
     position:  relative;
     margin: 50px auto;
-    margin-top: 100px;
+    margin-top: 80px;
     max-width: 450px;
     background-color: #fff;
     padding: 30px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;;
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 10px;
 }
 
 .login-box:hover{
@@ -58,8 +69,7 @@ form #pass_error{
     background: rgba(255, 0, 0, 0.1);
     text-align: center;
     padding: 5px 8px;
-    border-radius: 3px;
-    border: 1px #EF9A9A;
+    border: 1px solid #EF9A9A;
     border-radius: 5px;
     display: none;
 }
@@ -88,10 +98,14 @@ input[type = "submit"]:hover{
     color: #61afef;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .login-box {
         max-width: 100%;
         margin: 20px;
         padding: 15px;
+    }
+
+    .img-container img {
+        width: 20%; /* Regola la larghezza dell'immagine al 80% della larghezza disponibile */
     }
 }

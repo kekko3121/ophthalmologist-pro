@@ -7,6 +7,9 @@
     <title>Login</title>
 </head>
 <body>
+    <div class = "img-container">
+        <img src = "{{ url_for('static', filename = 'images/logo.jpg') }}" width = "150px" height = "150px">
+    </div>
     <div class = "login-box">
         <h1>Login User</h1>
         <form name= "login" onsubmit="return Validation()">
