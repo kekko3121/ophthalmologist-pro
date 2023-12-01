@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="Gradiation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>NewPrescription</title>
+</head>
+<body style="background-color: #ebfafa ">
+
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="logo.jpg" alt="Logo" width="40" height="40">My Opthamologist</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MyOttiglass</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="Doctorpage.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="MyAccount.html">MyAccount</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Prescriptions
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="MyPrescription.html">MyPrescriptions</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="NewPrescription.html">New prescriptions</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="text-align: center; margin-top: 60px;">
+    <h1 class="display-1">NEW PRESCRIPTION<h6 class="text-body-secondary">Powered By Ottiglass®</h6></h1></div>
+<div class="container-fluid" style="margin-top: 30px;">
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Data</label>
+    <input type="date" class="form-control" id="exampleFormControlInput16" placeholder="dd/mm/yyyy">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Patient Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Patient Name">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Patient Surname</label>
+    <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Patient Surname">
+</div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">CF</label>
+        <input type="password" class="form-control" id="exampleFormControlInput4" placeholder="AAAABB00A00A000A">
+    </div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Other data to note</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+</div>
+<div class="photo">
+    <img style="margin-right: 240px; margin-left: 30px;" class="image-fluid" src="occhiodx.png" alt="occhiodestro"><img style="margin-left: 30px;" class="image-fluid" src="occhiosx.png" alt="occhiosinistro">
+</div>
+<table class="table table-dark table-striped-columns">
+    <thead>
+    <tr>
+        <th scope="col"> </th>
+        <th scope="col">SFERA</th>
+        <th scope="col">CILINDRO</th>
+        <th scope="col">ASSE °</th>
+        <th scope="col"> </th>
+        <th scope="col">SFERA</th>
+        <th scope="col">CILINDRO</th>
+        <th scope="col">ASSE °</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect');
+            </script>
+
+        </select>
+        </td>
+        <td>
+            <select class="form-select" aria-label="Default select example" id="sferoSelect1">
+            <option selected>Open this select menu</option>
+            <script>
+             generateOptions('#sferoSelect1');
+            </script>
+        </select>
+        </td>
+        <td>
+            <select class="form-select" aria-label="Default select example" id="sferoSelect2">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptionsAsse('#sferoSelect2');
+            </script>
+            </select>
+        </td>
+        <th scope="row">LONTANO</th>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect3">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect3');
+            </script>
+        </select></td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect4">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect4');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect5">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptionsAsse('#sferoSelect5');
+            </script>
+        </select> </td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect6">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect6');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect7">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect7');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect8">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptionsAsse('#sferoSelect8');
+            </script>
+        </select> </td>
+        <th scope="row">PERMANENZA</th>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect9">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect9');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect10">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect10');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect11">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptionsAsse('#sferoSelect11');
+            </script>
+        </select> </td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect12">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect12');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect13">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect13');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect14">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptionsAsse('#sferoSelect14');
+            </script>
+        </select> </td>
+        <th scope="row">VICINO</th>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect15">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect15');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect16">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptions('#sferoSelect16');
+            </script>
+        </select> </td>
+        <td><select class="form-select" aria-label="Default select example" id="sferoSelect17">
+            <option selected>Open this select menu</option>
+            <script>
+                generateOptionsAsse('#sferoSelect17');
+            </script>
+        </select> </td>
+    </tr>
+    </tbody>
+</table>
+<div class="container-fluid">
+    <h1 style="font-family: Anonymous Pro, monospace; margin-top: 60px;">ALTRI PARAMETRI PERSONALIZZABILI</h1>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">(A)DISTANZA INTERPUPILLARE</label>
+        <input type="email" class="form-control" id="exampleFormControlInput7" placeholder="mm">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">(B)SEMIDAV</label>
+        <input type="email" class="form-control" id="exampleFormControlInput8" placeholder="mm">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">(C)DISTANZA APICE CORNEALE</label>
+        <input type="email" class="form-control" id="exampleFormControlInput9" placeholder="mm">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">(D)ANGOLO PANTOSCOPICO</label>
+        <input type="email" class="form-control" id="exampleFormControlInput10" placeholder="mm">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">(E)INSET</label>
+        <input type="email" class="form-control" id="exampleFormControlInput11" placeholder="mm">
+    </div>
+    <h1  style="font-family: Anonymous Pro, monospace; margin-top: 60px;">LENTI</h1>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">TIPO LENTE</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+    </div>
+        <h3  style="font-family: Anonymous Pro, monospace; margin-top: 60px;" for="exampleFormControlInput1" class="form-label">TRATTAMENTO</h3>
+        <input type="checkbox" class="btn-check" id="btn-check-outlined1" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn-check-outlined1">HARD</label>
+        <input type="checkbox" class="btn-check" id="btn-check-outlined2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn-check-outlined2">ANTIRIFLESSO</label>
+        <input type="checkbox" class="btn-check" id="btn-check-outlined3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn-check-outlined3">SATIN</label>
+        <input type="checkbox" class="btn-check" id="btn-check-outlined4" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn-check-outlined4">PERFORMANCE400</label>
+
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">NOTE FINALI</label>
+        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+    </div>
+
+    <div style="text-align: center">
+        <button style="font-size: x-large; width: 150px; height: 50px;" type="submit" class="btn btn-outline-success">Save</button>
+    </div>
+<div style="text-align: right">
+    <button type="reset" class="btn btn-outline-danger">Restart</button>
+
+    <div class="otti" style="position:absolute; top:20%; left: 2%">
+        Opthamologist PRO <br> by OTTIGLASS</br>
+    </div>
+
+    <div class="otti" style="position:absolute; top:335%; left: 2%">
+        Opthamologist PRO <br> by OTTIGLASS</br>
+    </div>
+</div>
+</div>
+</body>
+</html>
