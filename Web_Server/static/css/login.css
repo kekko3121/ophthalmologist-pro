@@ -7,6 +7,7 @@
 
 body{
     background-color:#282c34;
+    overflow: hidden;
 }
 
 .img-container {
@@ -20,11 +21,10 @@ body{
 }
 .login-box{
     position:  relative;
-    margin: 50px auto;
-    margin-top: 80px;
+    margin: 20px auto;
     max-width: 450px;
     background-color: #fff;
-    padding: 30px;
+    padding: 15px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
     border-radius: 10px;
@@ -63,8 +63,9 @@ input[type = "password"]{
 form #username_error,
 form #pass_error{
     margin-bottom: 10px;
-    width: 345px;
-    font-size: 18px;
+    width: 100%;
+    max-width: 420px;
+    font-size: 16px;
     color: #C62828;
     background: rgba(255, 0, 0, 0.1);
     text-align: center;
@@ -106,6 +107,12 @@ input[type = "submit"]:hover{
     }
 
     .img-container img {
-        width: 20%; /* Regola la larghezza dell'immagine al 80% della larghezza disponibile */
+        width: 20%;
+    }
+
+    form #username_error,
+    form #pass_error {
+        width: 100%;
+        max-width: none;
     }
 }

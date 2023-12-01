@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
 
@@ -8,9 +8,10 @@ def index():
     return render_template('index.html')
 
 #login page
-@app.route('/login')
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    #if request.method == 'POST':
+    return render_template('login.html', boolean = True)
 
 #signup page
 @app.route('/signup')

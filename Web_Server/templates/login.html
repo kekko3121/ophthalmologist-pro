@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class = "img-container">
-        <img src = "{{ url_for('static', filename = 'images/logo.jpg') }}" width = "150px" height = "150px">
+        <img src = "{{ url_for('static', filename = 'images/logo.jpg') }}" width = "110px" height = "110px">
     </div>
     <div class = "login-box">
         <h1>Login User</h1>
-        <form name= "login" onsubmit="return Validation()">
+        <form name= "login" method = "POST" action = "">
             <label for = "username">Username:</label>
             <input type = "text" name = "username"  id ="username" placeholder="Enter your username">
             <div id = "username_error">Please fill up your Username</div>
@@ -23,7 +23,7 @@
                 <input type = "checkbox" name = "remember">
                 <label for = "remember">Remember</label>
             </div>
-            <input type = "submit" id = "submit" value = "Login">
+            <input type = "submit" value = "Login">
         </form>
     </div>
 
