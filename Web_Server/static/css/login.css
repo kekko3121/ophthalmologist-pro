@@ -16,6 +16,11 @@ body{
     background-color: #fff;
     padding: 30px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;;
+}
+
+.login-box:hover{
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
 h1{
@@ -81,4 +86,12 @@ input[type = "submit"]{
 input[type = "submit"]:hover{
     background-color: #e4bb68;
     color: #61afef;
+}
+
+@media (max-width: 600px) {
+    .login-box {
+        max-width: 100%;
+        margin: 20px;
+        padding: 15px;
+    }
 }
