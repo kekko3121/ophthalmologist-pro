@@ -12,7 +12,7 @@
     </div>
     <div class = "login-box">
         <h1>Login User</h1>
-        <form name= "login" method = "POST" action = "">
+        <form name= "login" method = "POST">
             <label for = "username">Username:</label>
             <input type = "text" name = "username"  id ="username" placeholder="Enter your username">
             <div id = "username_error">Please fill up your Username</div>
@@ -23,7 +23,7 @@
                 <input type = "checkbox" name = "remember">
                 <label for = "remember">Remember</label>
             </div>
-            <input type = "submit" value = "Login">
+            <input type = "submit" id = "submit" value = "Login">
         </form>
     </div>
 
@@ -33,20 +33,32 @@
         //variables to store form data
         const username = document.querySelector('#username');
         const password = document.querySelector('#password')
-        const submit = document.querySelector('#submit');
+        const submit = document.querySelector("#submit");
 
         //interacts with the click event of the login button
         submit.addEventListener('click', (event) => {
             event.preventDefault();
 
+            let isValid = true; //fuction for verify data form
+
             //Username Validation
             if(username.value.trim() == ''){
                 error(username, '#username_error');
+
+                isValid = false;
             }
 
             //password Validation
             if(password.value.trim() == ''){
                 error(password, '#pass_error');
+
+                isValid = false;
+            }
+
+            // Check if isValid is still true
+            if (isValid) {
+                // If there are no errors, submit the form
+                sendDataToFlask();
             }
         });
 
@@ -56,7 +68,31 @@
             const username_error = parent.querySelector(message);
             username_error.style.display = 'block';
         }
+
+        function sendDataToFlask() {
+            const formData = new FormData();
+            formData.append('username', username.value);
+            formData.append('password', password.value);
         
+            fetch('/login', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from Flask if needed
+                console.log(data);
+
+                //Load the page returned by Flask
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
     </script>
 </body>
 </html>
