@@ -15,10 +15,17 @@ class Auth:
         user = HTTPBasicAuth(self.username, self.password)
         try:
             response = requests.get(self.link, auth=user)
-            print(response.status_code)
             response.raise_for_status()  # Solleva un'eccezione se la risposta ha uno status code non 2xx
         except requests.exceptions.RequestException as e:
             print(f"Errore durante la connessione: {e}")
             return None
         
-        return response.status_code
+        if(response.status_code == 200):
+            self.lista = response.json()
+            return True
+        else:
+            print(f"Error during connection: Status Code {response.status_code}")
+            return False
+        
+    def getDate(self):
+        return self.lista

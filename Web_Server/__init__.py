@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for, jsonify
 from Auth import Auth
 from flask_login import login_user, login_required, logout_user, current_user
+from DB import DB
 
 app = Flask(__name__)
 
@@ -15,8 +16,13 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        user = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
-        #if(user.connect() == 200):
+        authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
+        db = DB()
+        #if(user.connect() and db.seekMed()):
+        #   return jsonify({'redirect': '/doctor'})
+        
+        #elif(user.connect()):
+        #    return jsonify({'redirect': '/login'})
     
     return render_template('login.html', boolean = True)
 
@@ -31,6 +37,11 @@ def signup():
 @login_required
 def logout():
     return redirect("/login")
+
+@app.route('/doctor')
+@login_required
+def doctor():
+    return render_template('')
 
 #settings server ip and port
 if __name__ == '__main__':
