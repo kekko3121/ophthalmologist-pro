@@ -2,6 +2,17 @@ from flask import Flask, render_template, redirect, request, url_for, jsonify
 from Auth import Auth
 from flask_login import login_user, login_required, logout_user, current_user
 from DB import DB
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from the .env file
+load_dotenv()
+
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_service = os.getenv("SERVICE")
+db_ip = os.getenv("IP")
+db_port = os.getenv("PORT")
 
 app = Flask(__name__)
 
@@ -17,12 +28,11 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
-        db = DB()
-        #if(user.connect() and db.seekMed()):
-        #   return jsonify({'redirect': '/doctor'})
-        
-        #elif(user.connect()):
-        #    return jsonify({'redirect': '/login'})
+        db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
+        if(authentication.connect() and db.seekMed(authentication.getId())):
+           return jsonify({'redirect': '/doctor'})
+        elif(authentication.connect()):
+            return jsonify({'redirect': '/login'})
     
     return render_template('login.html', boolean = True)
 
@@ -34,14 +44,14 @@ def signup():
 
 #logout page
 @app.route('/logout')
-@login_required
+#@login_required
 def logout():
     return redirect("/login")
 
 @app.route('/doctor')
-@login_required
+#@login_required
 def doctor():
-    return render_template('')
+    return render_template('Doctorpage.html')
 
 #settings server ip and port
 if __name__ == '__main__':

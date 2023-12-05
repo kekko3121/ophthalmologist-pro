@@ -17,7 +17,7 @@ class Auth:
             response = requests.get(self.link, auth=user)
             response.raise_for_status()  # Solleva un'eccezione se la risposta ha uno status code non 2xx
         except requests.exceptions.RequestException as e:
-            print(f"Errore durante la connessione: {e}")
+            print(f"Error during the connection: {e}")
             return None
         
         if(response.status_code == 200):
@@ -29,3 +29,6 @@ class Auth:
         
     def getDate(self):
         return self.lista
+    
+    def getId(self):
+        return self.lista["user"]["codFis"]
