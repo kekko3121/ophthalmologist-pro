@@ -1,21 +1,24 @@
 import requests
 from requests.auth import HTTPBasicAuth
-import json
 
 class Auth:
-    def __init__(self, link):
-        self.link = link
-        
-    def __init__(self, link, username, password):
+    
+    #link api with authentication
+    def __init__(self, link, username = None, password = None):
         self.link = link
         self.username = username
         self.password = password
+        self.lista = None
     
+    #connection to api
     def connect(self):
-        user = HTTPBasicAuth(self.username, self.password)
+        auth = None
+        if self.username and self.password:
+            auth = HTTPBasicAuth(self.username, self.password)
+            
         try:
-            response = requests.get(self.link, auth=user)
-            response.raise_for_status()  # Solleva un'eccezione se la risposta ha uno status code non 2xx
+            response = requests.get(self.link, auth = auth)
+            response.raise_for_status()  # Raises an exception if the response has a status code other than 2xx.
         except requests.exceptions.RequestException as e:
             print(f"Error during the connection: {e}")
             return None
@@ -26,9 +29,16 @@ class Auth:
         else:
             print(f"Error during connection: Status Code {response.status_code}")
             return False
-        
+    
+    #return api value
     def getDate(self):
         return self.lista
     
-    def getId(self):
-        return self.lista["user"]["codFis"]
+    def search(self, *indici):
+        try:
+            valore = self.lista
+            for indice in indici:
+                valore = valore[indice]
+            return valore
+        except KeyError:
+            return None

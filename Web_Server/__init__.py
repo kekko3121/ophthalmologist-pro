@@ -29,7 +29,7 @@ def login():
         password = request.form.get('password')
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
         db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
-        if(authentication.connect() and db.seekMed(authentication.getId())):
+        if(authentication.connect() and db.seekMed(authentication.search("user", "codFis"))):
            return jsonify({'redirect': '/doctor'})
         elif(authentication.connect()):
             return jsonify({'redirect': '/login'})
@@ -44,12 +44,13 @@ def signup():
 
 #logout page
 @app.route('/logout')
-#@login_required
+@login_required
 def logout():
-    return redirect("/login")
+    logout_user()
+    return redirect(url_for("login"))
 
 @app.route('/doctor')
-#@login_required
+@login_required
 def doctor():
     return render_template('Doctorpage.html')
 
