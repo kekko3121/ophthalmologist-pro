@@ -3,6 +3,7 @@ from Auth import Auth
 from flask_login import login_user, login_required, logout_user, current_user
 from DB import DB
 from dotenv import load_dotenv
+from User import User
 import os
 
 # Load environment variables from the .env file
@@ -25,14 +26,17 @@ def index():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        
         username = request.form.get('username')
         password = request.form.get('password')
+        
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
-        db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
-        if(authentication.connect() and db.seekMed(authentication.search("user", "codFis"))):
-           return jsonify({'redirect': '/doctor'})
-        elif(authentication.connect()):
-            return jsonify({'redirect': '/login'})
+        
+        #db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
+        
+        if(authentication.connect()):
+            login_user(User(username))
+            
     
     return render_template('login.html', boolean = True)
 
@@ -49,7 +53,7 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
-@app.route('/doctor')
+@app.route('/homepage')
 @login_required
 def doctor():
     return render_template('Doctorpage.html')
