@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, jsonify
 from Auth import Auth
-from flask_login import login_user, login_required, logout_user, current_user
+from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 from DB import DB
 from dotenv import load_dotenv
 from User import User
@@ -9,13 +9,17 @@ import os
 # Load environment variables from the .env file
 load_dotenv()
 
-db_user = os.getenv("DB_USER")
-db_password = os.getenv("DB_PASSWORD")
-db_service = os.getenv("SERVICE")
-db_ip = os.getenv("IP")
-db_port = os.getenv("PORT")
-
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = os.getenv("KEY")
+
+db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
+
+login_manager = LoginManager(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User(user_id)
 
 #home page
 @app.route('/')
@@ -32,10 +36,9 @@ def login():
         
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
         
-        #db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
-        
         if(authentication.connect()):
-            login_user(User(username))
+            login_user(User(username, password), remember = True)
+            return jsonify()
             
     
     return render_template('login.html', boolean = True)
@@ -53,6 +56,7 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
+#login home page
 @app.route('/homepage')
 @login_required
 def doctor():
