@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv("KEY")
 
-db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
+#db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
 
 login_manager = LoginManager(app)
 
@@ -37,10 +37,9 @@ def login():
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
         
         if(authentication.connect()):
-            login_user(User(username, password), remember = True)
-            return jsonify()
-            
-    
+            login_user(User(str(username)), remember = True)
+            return jsonify({'redirect': '/homepage'})
+
     return render_template('login.html', boolean = True)
 
 #signup page
@@ -59,8 +58,8 @@ def logout():
 #login home page
 @app.route('/homepage')
 @login_required
-def doctor():
-    return render_template('Doctorpage.html')
+def homepage():
+    return render_template('homepage.html')
 
 #settings server ip and port
 if __name__ == '__main__':
