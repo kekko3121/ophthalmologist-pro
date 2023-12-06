@@ -8,6 +8,12 @@
     box-sizing: border-box;
 }
 
+.titlepage{
+    position: relative;
+    top: 20%;
+    left: 100%;
+}
+
 .animation {
     background: #282c34;
     font-size: 2vmin;
@@ -252,4 +258,9 @@
         top: 70%;
         left: 50%;
     }
+}
+
+.mb-3{
+    margin-top: 30px;
+    font-family: "Anonymous Pro", monospace;
 }
