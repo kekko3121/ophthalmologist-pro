@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="Gradiation.js"></script>
+    <script src="{{ url_for('static', filename =  'js/code.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
     <link href="style.css" rel="stylesheet" type="text/css">
     <title>NewPrescription</title>
 </head>
@@ -12,7 +13,7 @@
 
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="logo.jpg" alt="Logo" width="40" height="40">My Opthamologist</a>
+            <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename =  'images/home_logo.png') }}" alt="Logo" width="40" height="40">My Opthamologist</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -68,7 +69,7 @@
 </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">CF</label>
-        <input type="password" class="form-control" id="exampleFormControlInput4" placeholder="AAAABB00A00A000A">
+        <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="AAAABB00A00A000A">
     </div>
 <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Other data to note</label>
@@ -76,7 +77,7 @@
 </div>
 </div>
 <div class="photo">
-    <img style="margin-right: 240px; margin-left: 30px;" class="image-fluid" src="occhiodx.png" alt="occhiodestro"><img style="margin-left: 30px;" class="image-fluid" src="occhiosx.png" alt="occhiosinistro">
+    <img style="margin-right: 240px; margin-left: 30px;" class="image-fluid" src="{{ url_for('static', filename =  'images/occhiodx.png') }}" alt="occhiodestro"><img style="margin-left: 30px;" class="image-fluid" src="{{ url_for('static', filename =  'images/occhiosx.png') }}" alt="occhiosinistro">
 </div>
 <table class="table table-dark table-striped-columns">
     <thead>
@@ -247,7 +248,7 @@
         <label for="exampleFormControlInput1" class="form-label">TIPO LENTE</label>
         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
     </div>
-        <h3  style="font-family: Anonymous Pro, monospace; margin-top: 60px;" for="exampleFormControlInput1" class="form-label">TRATTAMENTO</h3>
+        <h3  style="font-family: Anonymous Pro, monospace; margin-top: 60px;" id="exampleFormControlInput01" class="form-label">TRATTAMENTO</h3>
         <input type="checkbox" class="btn-check" id="btn-check-outlined1" autocomplete="off">
         <label class="btn btn-outline-primary" for="btn-check-outlined1">HARD</label>
         <input type="checkbox" class="btn-check" id="btn-check-outlined2" autocomplete="off">
@@ -277,5 +278,101 @@
     </div>
 </div>
 </div>
+
+    <script>
+        function generateAndSavePDF() {
+            // Creazione di un nuovo documento jsPDF
+            var doc = new jsPDF();
+
+            // Aggiunta delle informazioni dalla pagina al documento
+            var data = document.getElementById('exampleFormControlInput16').value;
+            var patientName = document.getElementById('exampleFormControlInput2').value;
+            var patientSurname = document.getElementById('exampleFormControlInput3').value;
+            var cf = document.getElementById('exampleFormControlInput4').value;
+            var otherData = document.getElementById('exampleFormControlTextarea1').value;
+            var sfero = document.getElementById('sferoSelect').value;
+            var sfero1 = document.getElementById('sferoSelect1').value;
+            var sfero2 = document.getElementById('sferoSelect2').value;
+            var sfero3 = document.getElementById('sferoSelect3').value;
+            var sfero4 = document.getElementById('sferoSelect4').value;
+            var sfero5 = document.getElementById('sferoSelect5').value;
+            var sfero6 = document.getElementById('sferoSelect6').value;
+            var sfero7 = document.getElementById('sferoSelect7').value;
+            var sfero8 = document.getElementById('sferoSelect8').value;
+            var sfero9 = document.getElementById('sferoSelect9').value;
+            var sfero10 = document.getElementById('sferoSelect10').value;
+            var sfero11 = document.getElementById('sferoSelect11').value;
+            var sfero12 = document.getElementById('sferoSelect12').value;
+            var sfero13 = document.getElementById('sferoSelect13').value;
+            var sfero14 = document.getElementById('sferoSelect14').value;
+            var sfero15 = document.getElementById('sferoSelect15').value;
+            var sfero16 = document.getElementById('sferoSelect16').value;
+            var sfero17 = document.getElementById('sferoSelect17').value;
+            var A= document.getElementById('exampleFormControlInput7').value;
+            var B= document.getElementById('exampleFormControlInput8').value;
+            var C= document.getElementById('exampleFormControlInput9').value;
+            var D= document.getElementById('exampleFormControlInput10').value;
+            var E= document.getElementById('exampleFormControlInput11').value;
+            var tipol= document.getElementById('exampleFormControlInput1').value;
+            var trattamento= document.getElementById('exampleFormControlInput19').value;
+            var FinalNote= document.getElementById('exampleFormControlTextarea2').value;
+            doc.text('Data: ' + data, 10, 10);
+            doc.text('Patient Name: ' + patientName, 10, 20);
+            doc.text('Patient Surname: ' + patientSurname, 10, 30);
+            doc.text('CF: ' + cf, 10, 40);
+            doc.text('Other Data: ' + otherData, 10, 50);
+            doc.text('Sfero Sinistro da Lontano: ' + sfero, 10, 60);
+            doc.text('Cilindro Sinistro da Lontano: ' + sfero1, 10, 70);
+            doc.text('Asse Sinistro da Lontano: ' + sfero2, 10, 80);
+            doc.text('Sfero Destro da Lontano : ' + sfero3, 10, 90);
+            doc.text('Cilindro destro da Lontano: ' + sfero4, 10, 100);
+            doc.text('Asse Destro da Lontano: ' + sfero5, 10, 110);
+            doc.text('Sfero Sinistro a Permanenza: ' + sfero6, 10, 120);
+            doc.text('Cilindro Sinistro a Permanenza: ' + sfero7, 10, 130);
+            doc.text('Asse Sinistro a Permanenza: ' + sfero8, 10, 140);
+            doc.text('Sfero Destro a Permanenza: ' + sfero9, 10, 150);
+            doc.text('Cilindro Destro a Permanenza: ' + sfero10, 10, 160);
+            doc.text('Asse Destro a Permanenza: ' + sfero11, 10, 170);
+            doc.text('Sfero Sinistro da Vicino: ' + sfero12, 10, 180);
+            doc.text('Cilindro Sinistro da Vicino: ' + sfero13, 10, 190);
+            doc.text('Asse Sinistro da Vicino: ' + sfero14, 10, 200);
+            doc.text('Sfero Destro da Vicino: ' + sfero15, 10, 210);
+            doc.text('Cilindro Destro da Vicino: ' + sfero16, 10, 220);
+            doc.text('Asse Destro da Vicino: ' + sfero17, 10, 230);
+            doc.text('DISTANZA INTERPUPILLARE: ' + A, 10, 240);
+            doc.text('SEMIDAV: ' + B, 10, 250);
+            doc.text('DISTANZA APICE CORNEALE: ' + C, 10, 260);
+            doc.text('ANGOLO PANTOSCOPICO: ' + D, 10, 270);
+            doc.text('INSET: ' + E, 10, 280);
+
+
+            if (300 >280) {
+                doc.addPage(); // Aggiungi una nuova pagina
+                currentHeight = 10; // Reimposta l'altezza corrente per la nuova pagina
+            }
+
+            doc.text('Tipo Lenti: ' + tipol, 10, 10);
+            doc.text('Trattamento: ' + trattamento, 10, 20);
+            doc.text('Final Note: ' + FinalNote, 10, 30);
+
+
+
+            var img = new Image()
+            img.src = 'ottiglass.jpg'
+            doc.addImage(img, 'jpg', 50, 50, 150, 150)
+            var fileName = 'prescription_' + data + '_' + patientSurname + '.pdf';
+            // Salvataggio del PDF
+            doc.save(fileName);
+        }
+    </script>
+    <div class="container-fluid" style="margin-top: 30px;">
+
+
+
+        <div style="text-align: center">
+            <button style="font-size: x-large; width: 150px; height: 50px;" type="button"
+                    class="btn btn-outline-success" onclick="generateAndSavePDF()">Generate PDF</button>
+        </div>
+    </div>
 </body>
 </html>
