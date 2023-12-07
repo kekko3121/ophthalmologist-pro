@@ -13,13 +13,18 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv("KEY")
 
-#db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
+db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
 
 login_manager = LoginManager(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User(user_id)
+    if db.is_Doctor(user_id):
+        user_role = "doctor"
+    else:
+        user_role = "user"
+
+    return User(user_id, user_role)
 
 #home page
 @app.route('/')
@@ -38,10 +43,14 @@ def login():
         password = request.form.get('password')
         remember = request.form.get('remember')
         
-        authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
+        authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", username, password)
         
         if authentication.connect():
-            login_user(User(str(username)), remember = remember)
+            current_user.role = "user"
+            if db.is_Doctor(authentication.search("user", "codFis")):
+                current_user.role = "doctor"
+
+            login_user(User(str(username), current_user.role), remember =  bool(remember.lower() == 'true'))
             return jsonify({'redirect': url_for('homepage')})
 
     return render_template('login.html', boolean = True)

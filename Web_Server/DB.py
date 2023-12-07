@@ -12,10 +12,10 @@ class DB():
         self.cursor.close()
         self.conn.close()
                         
-    def seekMed(self, cf):
+    def is_Doctor(self, cf):
         self.cursor.execute("SELECT CF FROM MEDICO WHERE CF = :cf", cf = cf)
         result = self.cursor.fetchone()
         if(result):
-            return result[0]
+            return True
         else:
-            return None
+            return False
