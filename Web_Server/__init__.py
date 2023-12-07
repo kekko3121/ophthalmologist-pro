@@ -29,16 +29,19 @@ def index():
 #login page
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    if current_user.is_authenticated:
+            return redirect(url_for('homepage'))
+    
+    elif request.method == 'POST':
         
         username = request.form.get('username')
         password = request.form.get('password')
         
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
         
-        if(authentication.connect()):
+        if authentication.connect():
             login_user(User(str(username)), remember = True)
-            return jsonify({'redirect': '/homepage'})
+            return jsonify({'redirect': url_for('homepage')})
 
     return render_template('login.html', boolean = True)
 
@@ -46,7 +49,7 @@ def login():
 @app.route('/signup')
 def signup():
     #redirect link for create account
-    return redirect("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do", code = 302)
+    return redirect(url_for("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do"), code = 302)
 
 #logout page
 @app.route('/logout')
