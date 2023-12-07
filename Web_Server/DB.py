@@ -14,8 +14,8 @@ class DB():
                         
     def seekMed(self, cf):
         self.cursor.execute("SELECT CF FROM MEDICO WHERE CF = :cf", cf = cf)
-        result = self.cursor.fetchall()
-        if(result != None):
-            return False
+        result = self.cursor.fetchone()
+        if(result):
+            return result[0]
         else:
-            return True
+            return None

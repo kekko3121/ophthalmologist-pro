@@ -36,11 +36,12 @@ def login():
         
         username = request.form.get('username')
         password = request.form.get('password')
+        remember = request.form.get('remember')
         
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
         
         if authentication.connect():
-            login_user(User(str(username)), remember = True)
+            login_user(User(str(username)), remember = remember)
             return jsonify({'redirect': url_for('homepage')})
 
     return render_template('login.html', boolean = True)
