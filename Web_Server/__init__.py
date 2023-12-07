@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv("KEY")
 
-db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
+#db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
 
 login_manager = LoginManager(app)
 
@@ -29,25 +29,27 @@ def index():
 #login page
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if request.method == 'POST':
+    if current_user.is_authenticated:
+            return redirect(url_for('homepage'))
+    
+    elif request.method == 'POST':
         
         username = request.form.get('username')
         password = request.form.get('password')
         
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", str(username), str(password))
         
-        if(authentication.connect()):
-            login_user(User(username, password), remember = True)
-            return jsonify()
-            
-    
+        if authentication.connect():
+            login_user(User(str(username)), remember = True)
+            return jsonify({'redirect': url_for('homepage')})
+
     return render_template('login.html', boolean = True)
 
 #signup page
 @app.route('/signup')
 def signup():
     #redirect link for create account
-    return redirect("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do", code = 302)
+    return redirect(url_for("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do"), code = 302)
 
 #logout page
 @app.route('/logout')
@@ -59,8 +61,8 @@ def logout():
 #login home page
 @app.route('/homepage')
 @login_required
-def doctor():
-    return render_template('Doctorpage.html')
+def homepage():
+    return render_template('homepage.html')
 
 #settings server ip and port
 if __name__ == '__main__':
