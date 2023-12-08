@@ -12,16 +12,15 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv("KEY")
+app.config['Role'] = None
 
 db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
 
 login_manager = LoginManager(app)
 
-role = None
-
 @login_manager.user_loader
 def load_user(user_id):
-    return User(user_id, role)
+    return User(user_id, app.config['Role'])
 
 #home page
 @app.route('/')
@@ -43,18 +42,17 @@ def login():
         authentication = Auth("https://api.uniparthenope.it/UniparthenopeApp/v1/login", username, password)
         
         if authentication.connect():
-            current_user.role = "user"
             if db.is_Doctor(authentication.search("user", "codFis")):
-                role = "doctor"
+                app.config['Role'] = "doctor"
 
             else:
-                role = "user"
+                app.config['Role'] = "user"
 
-            login_user(User(str(username), role), remember =  bool(remember.lower() == 'true'))
+            login_user(User(str(username), app.config['Role']), remember =  bool(remember.lower() == 'true'))
             return jsonify({'redirect': url_for('homepage')})
         
         else:
-            return jsonify({'error': 'Invalid credentials'})
+            return jsonify({'error': 'Invalid username or password'})
 
     return render_template('login.html', boolean = True)
 
@@ -76,7 +74,7 @@ def logout():
 @login_required
 def homepage():
     print(current_user.getRole())
-    is_user = current_user.role != "doctor"
+    is_user = current_user.getRole() != "doctor"
             
     return render_template('homepage.html', is_user = is_user)
 
