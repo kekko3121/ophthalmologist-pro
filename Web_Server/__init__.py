@@ -17,14 +17,11 @@ db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os
 
 login_manager = LoginManager(app)
 
+role = "user"
+
 @login_manager.user_loader
 def load_user(user_id):
-    if db.is_Doctor(user_id):
-        user_role = "doctor"
-    else:
-        user_role = "user"
-
-    return User(user_id, user_role)
+    return User(user_id, role)
 
 #home page
 @app.route('/')
@@ -48,9 +45,9 @@ def login():
         if authentication.connect():
             current_user.role = "user"
             if db.is_Doctor(authentication.search("user", "codFis")):
-                current_user.role = "doctor"
+                role = "doctor"
 
-            login_user(User(str(username), current_user.role), remember =  bool(remember.lower() == 'true'))
+            login_user(User(str(username), role), remember =  bool(remember.lower() == 'true'))
             return jsonify({'redirect': url_for('homepage')})
 
     return render_template('login.html', boolean = True)
