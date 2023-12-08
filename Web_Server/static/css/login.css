@@ -61,7 +61,8 @@ input[type = "password"]{
 }
 
 form #username_error,
-form #pass_error{
+form #pass_error,
+form #error-message{
     margin-bottom: 10px;
     width: 100%;
     max-width: 420px;
@@ -111,7 +112,8 @@ input[type = "submit"]:hover{
     }
 
     form #username_error,
-    form #pass_error {
+    form #pass_error,
+    form #error-message {
         width: 100%;
         max-width: none;
     }

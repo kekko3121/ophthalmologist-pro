@@ -5,6 +5,7 @@ const username = document.querySelector('#username');
 const password = document.querySelector('#password');
 const remember = document.querySelector('#remember');
 const submit = document.querySelector("#submit");
+const errorMessage = document.querySelector('#error-message');
 
 //interacts with the click event of the login button
 submit.addEventListener('click', (event) => {
@@ -14,14 +15,14 @@ submit.addEventListener('click', (event) => {
 
     //Username Validation
     if(username.value.trim() == ''){
-        error(username, '#username_error');
+        error(username, '#username_error', "Please fill up your Username");
 
         isValid = false;
     }
 
     //password Validation
     if(password.value.trim() == ''){
-        error(password, '#pass_error');
+        error(password, '#pass_error', "Please fill up your password");
 
         isValid = false;
     }
@@ -33,16 +34,19 @@ submit.addEventListener('click', (event) => {
     }
 });
 
-function error(element, message){
+function error(element, id, errorMessage){
     // Update the visual style of the form element to indicate an error
     element.style.border = '2px red solid';
     // Find the parent element of the form element
     const parent = element.parentElement;
-    // Select the error message container using the provided CSS selector
-    const username_error = parent.querySelector(message);
-    // Display the error message container
-    username_error.style.display = 'block';
+   // Select the error message container using the provided CSS selector
+   const errorContainer = parent.querySelector(id);
+   // Display the error message container
+   errorContainer.style.display = 'block';
+   // Set the error message text
+   errorContainer.textContent = errorMessage;
 }
+
 
 // send the form date to flask
 function sendDataToFlask() {
@@ -59,6 +63,11 @@ function sendDataToFlask() {
     .then(data => {
         // Handle the response from Flask if needed
         console.log(data);
+
+        // Check if there is an error message
+        if (data.error) {
+            error(errorMessage, '#error-message', data.error)
+        }
 
         //Load the page returned by Flask
         if (data.redirect) {

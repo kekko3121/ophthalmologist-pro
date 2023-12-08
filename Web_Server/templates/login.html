@@ -15,18 +15,18 @@
         <form name= "login" method = "POST">
             <label for = "username">Username:</label>
             <input type = "text" name = "username"  id ="username" placeholder="Enter your username">
-            <div id = "username_error">Please fill up your Username</div>
+            <div id = "username_error"></div>
             <label for = "password">Password:</label>
             <input type = "password" name = "password" id = "password" placeholder = "Enter your password">
-            <div id = "pass_error">Please fill up your password</div>
+            <div id = "pass_error"></div>
             <div class = "check">
                 <input type = "checkbox" name = "remember" id = 'remember'>
                 <label for = "remember">Remember</label>
             </div>
             <input type = "submit" id = "submit" value = "Login">
+            <div id="error-message"></div>
         </form>
     </div>
-
     <script src = "{{ url_for('static', filename = 'js/login.js') }}"></script>
 
 </body>

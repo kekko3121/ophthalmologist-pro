@@ -17,7 +17,7 @@ db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os
 
 login_manager = LoginManager(app)
 
-role = "user"
+role = None
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -47,8 +47,14 @@ def login():
             if db.is_Doctor(authentication.search("user", "codFis")):
                 role = "doctor"
 
+            else:
+                role = "user"
+
             login_user(User(str(username), role), remember =  bool(remember.lower() == 'true'))
             return jsonify({'redirect': url_for('homepage')})
+        
+        else:
+            return jsonify({'error': 'Invalid credentials'})
 
     return render_template('login.html', boolean = True)
 
@@ -69,7 +75,10 @@ def logout():
 @app.route('/homepage')
 @login_required
 def homepage():
-    return render_template('homepage.html')
+    print(current_user.getRole())
+    is_user = current_user.role != "doctor"
+            
+    return render_template('homepage.html', is_user = is_user)
 
 #settings server ip and port
 if __name__ == '__main__':
