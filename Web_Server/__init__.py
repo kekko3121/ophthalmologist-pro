@@ -60,7 +60,7 @@ def login():
 @app.route('/signup')
 def signup():
     #redirect link for create account
-    return redirect(url_for("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do"), code = 302)
+    return redirect("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do", code = 302)
 
 #logout page
 @app.route('/logout')
@@ -73,7 +73,6 @@ def logout():
 @app.route('/homepage')
 @login_required
 def homepage():
-    print(current_user.getRole())
     is_user = current_user.getRole() != "doctor"
             
     return render_template('homepage.html', is_user = is_user)

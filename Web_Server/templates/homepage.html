@@ -51,7 +51,7 @@
                     </form>
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a style="margin-top: 430px; margin-left: 225px;" class="nav-link" aria-current="page" href="/logout">Logout<img style="margin-left: 20px; width:30px; height: 30px;" src="logout.png" alt="logout">
+                            <a class="nav-link logout-btn" aria-current="page" href="/logout">Logout<img style="margin-left: 20px; width:30px; height: 30px;" src="{{ url_for('static', filename = 'images/logout.png') }}" alt="logout">
 
                             </a>
                         </li>
@@ -173,7 +173,7 @@
         </div>
     </div>
 </div>
-<img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" class="img-fluid" alt="Ottiglass">
+<!-- <img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" class="img-fluid" alt="Ottiglass"> -->
 
 <script>
     // Read the value from the data attribute in your JavaScript script

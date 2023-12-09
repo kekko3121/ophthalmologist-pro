@@ -97,3 +97,28 @@
     }
 
 }
+
+/* Stili predefiniti */
+/* Stili per il pulsante Logout */
+.logout-btn {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+/* Aggiungi stili per la formattazione del pulsante se necessario */
+.logout-btn:hover {
+    background-color: #555;
+}
+
+/* Media query per gestire lo spazio sopra il pulsante su schermi più piccoli */
+@media (max-width: 768px) {
+    .logout-btn {
+        margin-top: 20px; /* Puoi regolare questo valore in base alle tue esigenze */
+    }
+}
