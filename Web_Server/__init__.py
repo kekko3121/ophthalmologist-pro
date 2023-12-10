@@ -27,6 +27,12 @@ def load_user(user_id):
 def index():
     return render_template('index.html')
 
+#signup page
+@app.route('/signup')
+def signup():
+    #redirect link for create account
+    return redirect("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do", code = 302)
+
 #login page
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -56,12 +62,6 @@ def login():
 
     return render_template('login.html', boolean = True)
 
-#signup page
-@app.route('/signup')
-def signup():
-    #redirect link for create account
-    return redirect("https://uniparthenope.esse3.cineca.it/AddressBook/ABStartProcessoRegAction.do", code = 302)
-
 #logout page
 @app.route('/logout')
 @login_required
@@ -76,6 +76,23 @@ def homepage():
     is_user = current_user.getRole() != "doctor"
             
     return render_template('homepage.html', is_user = is_user)
+
+@app.route('/account')
+@login_required
+def account():
+    is_user = current_user.getRole() != "doctor"
+    
+    return render_template('MyAccount.html', is_user = is_user)
+
+@app.route('/myprescription')
+@login_required
+def myprescription():
+    return render_template('MyPrescription.html')
+
+@app.route('/newprescription')
+@login_required
+def newprescription():
+    return render_template('NewPrescription.html')
 
 #settings server ip and port
 if __name__ == '__main__':

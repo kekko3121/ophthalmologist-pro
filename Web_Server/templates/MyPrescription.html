@@ -6,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename = 'css/navbar.css') }}" rel = "stylesheet" type = "text/css">
     <title>MyPrescriptions</title>
 </head>
 <body style="font-family: Anonymous Pro, monospace; background-color: beige;">
@@ -23,22 +24,19 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="Doctorpage.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="/homepage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="MyAccount.html">MyAccount</a>
+                        <a class="nav-link" href="/account">MyAccount</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Prescriptions
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="MyPrescription.html">MyPrescriptions</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="NewPrescription.html">New prescriptions</a></li>
-
+                            <li><a class="dropdown-item" href="/myprescription">MyPrescriptions</a></li>
+                            <li><hr class="dropdown-divider" id = "row"></li>
+                            <li><a class="dropdown-item" href="/newprescription" id = "prescriptions">New prescriptions</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -48,9 +46,7 @@
                 </form>
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a style="margin-top: 430px; margin-left: 225px;" class="nav-link" aria-current="page" href="/logout">Logout<img style="margin-left: 20px; width:30px; height: 30px;" src="logout.png" alt="logout">
-
-                            </a>
+                            <a class="nav-link logout-btn" aria-current="page" href="/logout">Logout<img style="margin-left: 20px; width:30px; height: 30px;" src="{{ url_for('static', filename = 'images/logout.png') }}" alt="logout"></a>
                         </li>
                     </ul>
             </div>
