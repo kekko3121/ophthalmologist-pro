@@ -4,8 +4,8 @@ function generateOptions(selector) {
 
     for (let i = -10.00; i <= 10.00; i += 0.25) {
         const option = document.createElement('option');
-        option.value = i.toFixed(2); // Limita il numero di decimali a due
-        option.textContent = i.toFixed(2);
+        option.value = i;
+        option.textContent = i;
         selectElement.appendChild(option);
     }
 }
@@ -15,8 +15,8 @@ function generateOptionsAsse(selector) {
 
     for (let i = 0; i <= 180; i += 5) {
         const option = document.createElement('option');
-        option.value = i.toFixed(0); // Limita il numero di decimali a due
-        option.textContent = i.toFixed(0);
+        option.value = i;
+        option.textContent = i;
         selectElementAsse.appendChild(option);
     }
 }
