@@ -82,14 +82,15 @@
 </div>
 
 <script>
-    // Read the condition value directly from Flask
-    let yourCondition = {{ is_user|tojson|safe }};
-
-    // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
-    if (yourCondition) {
-        document.getElementById("row").style.display = "none";
-        document.getElementById("prescriptions").style.display = "none";
-    }
+    document.addEventListener('DOMContentLoaded', function(){
+        // Read the condition value directly from Flask
+        let user = "{{current_user.getRole()}}";
+        // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
+        if (user != 'doctor') {
+            document.getElementById("row").style.display = "none";
+            document.getElementById("prescriptions").style.display = "none";
+        }
+    });
 </script>
 
 </body>

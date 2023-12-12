@@ -59,7 +59,7 @@
         </div>
     </nav>
 
-<div style="margin-top: 20px; background-image: url('optiphoto.jpg');"  class="accordion accordion-flush" id="accordionFlushExample">
+<div style="margin-top: 20px;"  class="accordion accordion-flush" id="accordionFlushExample">
     <div  class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -171,18 +171,17 @@
         </div>
     </div>
 </div>
-<!-- <img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" class="img-fluid" alt="Ottiglass"> -->
 
 <script>
-    // Read the value from the data attribute in your JavaScript script
-    // Read the condition value directly from Flask
-    let yourCondition = {{ is_user|tojson|safe }};
-
-    // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
-    if (yourCondition) {
-        document.getElementById("row").style.display = "none";
-        document.getElementById("prescriptions").style.display = "none";
-    }
+    document.addEventListener('DOMContentLoaded', function(){
+        // Read the condition value directly from Flask
+        let user = "{{current_user.getRole()}}";
+        // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
+        if (user != 'doctor') {
+            document.getElementById("row").style.display = "none";
+            document.getElementById("prescriptions").style.display = "none";
+        }
+    });
 </script>
 </body>
 </html>

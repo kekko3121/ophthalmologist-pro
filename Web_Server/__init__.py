@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, jsonify
+from flask import Flask, render_template, redirect, request, url_for, jsonify, session
 from Auth import Auth
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 from DB import DB
@@ -12,7 +12,6 @@ load_dotenv()
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.getenv("KEY")
-app.config['Role'] = None
 
 db = DB(os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), os.getenv("SERVICE"), os.getenv("IP"), os.getenv("PORT"))
 
@@ -20,7 +19,7 @@ login_manager = LoginManager(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User(user_id, app.config['Role'])
+    return User(user_id, session.get('Role'))
 
 #home page
 @app.route('/')
@@ -49,12 +48,12 @@ def login():
         
         if authentication.connect():
             if db.is_Doctor(authentication.search("user", "codFis")):
-                app.config['Role'] = "doctor"
+                session['Role'] = "doctor"
 
             else:
-                app.config['Role'] = "user"
+                session['Role'] = "user"
 
-            login_user(User(str(username), app.config['Role']), remember =  bool(remember.lower() == 'true'))
+            login_user(User(str(username), session.get('Role')), remember =  bool(remember.lower() == 'true'))
             return jsonify({'redirect': url_for('homepage')})
         
         else:
@@ -73,16 +72,13 @@ def logout():
 @app.route('/homepage')
 @login_required
 def homepage():
-    is_user = current_user.getRole() != "doctor"
-            
-    return render_template('homepage.html', is_user = is_user)
+    print(current_user.getRole())
+    return render_template('homepage.html')
 
 @app.route('/account')
 @login_required
 def account():
-    is_user = current_user.getRole() != "doctor"
-    
-    return render_template('MyAccount.html', is_user = is_user)
+    return render_template('MyAccount.html')
 
 @app.route('/myprescription')
 @login_required
