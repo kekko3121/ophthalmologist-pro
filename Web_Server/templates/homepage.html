@@ -59,120 +59,75 @@
         </div>
     </nav>
 
-<div style="margin-top: 20px; background-image: url('optiphoto.jpg');"  class="accordion accordion-flush" id="accordionFlushExample">
-    <div  class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Avvisi
-                <a style="position: absolute; left: 90%; color: #a9b0bd">Dettagli</a></button>
-        </h2>
-        <div  id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body"><table  class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mittente</th>
-                    <th scope="col">Tipologia</th>
-                    <th scope="col">Contenuto</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-success">
-                    <th scope="row">1</th>
-                    <td>Ottiglass</td>
-                    <td>Pubblicità</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">2</th>
-                    <td>Dott.Vella Mario</td>
-                    <td>Visite Mese Settembre</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">3</th>
-                    <td>Ottiglass</td>
-                    <td>Avviso</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                </tbody>
-            </table></div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Pannello Di Controllo
-                <a style="position: absolute; left: 90%; color: #a9b0bd">Dettagli</a></button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body"><table class="table table-striped-columns">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Processo</th>
-                    <th scope="col">Stato</th>
-                    <th scope="col">Accesso</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-success">
-                    <th scope="row">1</th>
-                    <td>Prescrizioni</td>
-                    <td>3 prescrizioni</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">2</th>
-                    <td>Visite</td>
-                    <td>Situazione non regolare</td>
-                    <td><link href="#">Prenota</td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">3</th>
-                    <td>Prenotazioni</td>
-                    <td>0 prenotazioni</td>
-                    <td><link href="#">Prenota</td>
-                </tr>
-                </tbody>
-            </table></div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Messaggi
-            <a style="position: absolute; left: 90%; color: #a9b0bd">Dettagli</a></button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body"><table class="table table-borderless">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mittente</th>
-                    <th scope="col">Contenuto</th>
+<style>
+    a {
+        text-decoration: none; /* Rimuove la sottolineatura */
+        color: #333; /* Imposta il colore del testo del link */
+    }
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-warning">
-                    <th scope="row">1</th>
-                    <td>System</td>
-                    <td colspan="2">1 Prenotazione non confermata</td>
+    .pag1{
+        font-family: "Anonymous Pro", monospace;
+        color: #61afef;
+    }
 
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">2</th>
-                    <td>Ottiglass</td>
-                    <td colspan="2">Le lenti sono disponibili in store.</td>
-                </tr>
-                </tbody>
-            </table></div>
+    .pag2{
+        font-family: "Arial";
+        color: blue;
+    }
+
+    .pag3{
+        font-family: "Comic Sans MS";
+        color: firebrick;
+    }
+
+    p{
+        font-family: "Montserrat", sans-serif;
+        color: #61afef;
+    }
+
+
+</style>
+
+    <div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href="https://ottiglass.com/" ><img src="ottica.jpg" class="d-block w-100" alt="..."></a>
+            <div class="carousel-caption d-none d-md-block">
+                <a href="https://ottiglass.com/" ><h1 class="pag1">Come and Discover our products</h1></a>
+                <a href="https://ottiglass.com/" ><p>Join us in store and immerse yourself in our fantastic world</p></a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <a href="index.html" ><img src="prescrizione.jpg" class="d-block w-100" alt="..."></a>
+            <div class="carousel-caption d-none d-md-block">
+                <a href="index.html" ><h1 class="pag2">View your prescriptions online</h1></a>
+                <a href="index.html" ><p>Your prescriptions always accessible online on our my opthqamologist portal</p></a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><img src="visitaoculistica.jpg" class="d-block w-100" alt="..."></a>
+           <div class="carousel-caption d-none d-md-block">
+               <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><h1 class="pag3">Consult an expert's opinion</h1></a>
+               <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><p>Come to the office for your free visit</p></a>
+            </div>
         </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
-<!-- <img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" class="img-fluid" alt="Ottiglass"> -->
-
+</div>
 <script>
     // Read the value from the data attribute in your JavaScript script
     // Read the condition value directly from Flask
