@@ -54,8 +54,9 @@ def login():
                 session['Role'] = "user"
 
             login_user(User(str(username), session.get('Role')), remember =  bool(remember.lower() == 'true'))
+            session['user_data'] = authentication.getDate()
             return jsonify({'redirect': url_for('homepage')})
-        
+
         else:
             return jsonify({'error': 'Invalid username or password'})
 
@@ -72,13 +73,13 @@ def logout():
 @app.route('/homepage')
 @login_required
 def homepage():
-    print(current_user.getRole())
     return render_template('homepage.html')
 
 @app.route('/account')
 @login_required
 def account():
-    return render_template('MyAccount.html')
+    authentication = session['user_data']
+    return render_template('MyAccount.html', authentication = authentication)
 
 @app.route('/myprescription')
 @login_required
@@ -88,7 +89,10 @@ def myprescription():
 @app.route('/newprescription')
 @login_required
 def newprescription():
-    return render_template('NewPrescription.html')
+    if current_user.getRole() == 'doctor':
+        return render_template('NewPrescription.html')
+    else:
+        return redirect(url_for("homepage"))
 
 #settings server ip and port
 if __name__ == '__main__':

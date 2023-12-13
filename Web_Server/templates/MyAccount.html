@@ -58,9 +58,15 @@
 </div>
 <div style="margin-top: 20px;" class="d-grid gap-2 col-6 mx-auto">
     <h1 style="text-align: center">Personal Data</h1>
-    <button class="btn btn-primary" type="button">Name</button>
-    <button class="btn btn-primary" type="button">Surname</button>
-    <button class="btn btn-primary" type="button">Sesso</button>
+    <button class="btn btn-primary" type="button">{{authentication['user']['firstName']}}</button>
+    <button class="btn btn-primary" type="button">{{authentication['user']['lastName']}}</button>
+    <button class="btn btn-primary" type="button">
+        {%if authentication['user']['sex'] == "M" %}
+            Maschio
+        {% else %}
+            Femmina
+        {% endif %}
+    </button>
     <button class="btn btn-primary" type="button">Data Di Nascita</button>
     <button class="btn btn-primary" type="button">Cittadinanza</button>
     <button class="btn btn-primary" type="button">Nazione di Nascita</button>
