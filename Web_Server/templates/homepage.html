@@ -2,18 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>My Opthamologist</title>
     <link href="{{ url_for('static', filename = 'css/navbar.css') }}" rel = "stylesheet" type = "text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+    body{
+        overflow: hidden;
+    }
+    
+    a {
+        text-decoration: none; /* Rimuove la sottolineatura */
+        color: #333; /* Imposta il colore del testo del link */
+    }
+
+    .pag1{
+        font-family: "Anonymous Pro", monospace;
+        color: #61afef;
+    }
+
+    .pag2{
+        font-family: "Arial";
+        color: blue;
+    }
+
+    .pag3{
+        font-family: "Comic Sans MS";
+        color: firebrick;
+    }
+
+    p{
+        font-family: "Montserrat", sans-serif;
+        color: #61afef;
+    }
+    
+    .carousel-inner img {
+        max-width: 100%; /* Imposta la larghezza massima al 100% del contenitore padre */
+        height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni originali */
+    }
+
+    .carousel-indicators,
+    .carousel-caption{
+        bottom: 30px;
+    }
+
+</style>
 </head>
 <body>
 <h1>Opthamologist PRO</h1>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" alt="Logo" width="40" height="40"> My Opthamologist</a>
@@ -58,123 +96,6 @@
             </div>
         </div>
     </nav>
-
-<div style="margin-top: 20px;"  class="accordion accordion-flush" id="accordionFlushExample">
-    <div  class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Avvisi
-                <a style="position: absolute; left: 90%; color: #a9b0bd">Dettagli</a></button>
-        </h2>
-        <div  id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body"><table  class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mittente</th>
-                    <th scope="col">Tipologia</th>
-                    <th scope="col">Contenuto</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-success">
-                    <th scope="row">1</th>
-                    <td>Ottiglass</td>
-                    <td>Pubblicità</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">2</th>
-                    <td>Dott.Vella Mario</td>
-                    <td>Visite Mese Settembre</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">3</th>
-                    <td>Ottiglass</td>
-                    <td>Avviso</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                </tbody>
-            </table></div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Pannello Di Controllo
-                <a style="position: absolute; left: 90%; color: #a9b0bd">Dettagli</a></button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body"><table class="table table-striped-columns">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Processo</th>
-                    <th scope="col">Stato</th>
-                    <th scope="col">Accesso</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="table-success">
-                    <th scope="row">1</th>
-                    <td>Prescrizioni</td>
-                    <td>3 prescrizioni</td>
-                    <td><link href="#">Visualizza</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">2</th>
-                    <td>Visite</td>
-                    <td>Situazione non regolare</td>
-                    <td><link href="#">Prenota</td>
-                </tr>
-                <tr class="table-info">
-                    <th scope="row">3</th>
-                    <td>Prenotazioni</td>
-                    <td>0 prenotazioni</td>
-                    <td><link href="#">Prenota</td>
-                </tr>
-                </tbody>
-            </table></div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Messaggi
-            <a style="position: absolute; left: 90%; color: #a9b0bd">Dettagli</a></button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body"><table class="table table-borderless">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mittente</th>
-                    <th scope="col">Contenuto</th>
-
-    .pag1{
-        font-family: "Anonymous Pro", monospace;
-        color: #61afef;
-    }
-
-    .pag2{
-        font-family: "Arial";
-        color: blue;
-    }
-
-    .pag3{
-        font-family: "Comic Sans MS";
-        color: firebrick;
-    }
-
-    p{
-        font-family: "Montserrat", sans-serif;
-        color: #61afef;
-    }
-
-
-</style>
-
     <div id="carouselExampleCaptions" class="carousel slide">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -184,21 +105,21 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <a href="https://ottiglass.com/" ><img src="ottica.jpg" class="d-block w-100" alt="..."></a>
+            <a href="https://ottiglass.com/" ><img src="{{ url_for('static', filename = 'images/ottica.jpg') }}" class="d-block w-100"></a>
             <div class="carousel-caption d-none d-md-block">
                 <a href="https://ottiglass.com/" ><h1 class="pag1">Come and Discover our products</h1></a>
                 <a href="https://ottiglass.com/" ><p>Join us in store and immerse yourself in our fantastic world</p></a>
             </div>
         </div>
         <div class="carousel-item">
-            <a href="index.html" ><img src="prescrizione.jpg" class="d-block w-100" alt="..."></a>
+            <a href="index.html" ><img src="{{ url_for('static', filename = 'images/prescrizione.jpg') }}" class="d-block w-100"></a>
             <div class="carousel-caption d-none d-md-block">
                 <a href="index.html" ><h1 class="pag2">View your prescriptions online</h1></a>
                 <a href="index.html" ><p>Your prescriptions always accessible online on our my opthqamologist portal</p></a>
             </div>
         </div>
         <div class="carousel-item">
-            <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><img src="visitaoculistica.jpg" class="d-block w-100" alt="..."></a>
+            <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><img src="{{ url_for('static', filename = 'images/visitaoculistica.jpg') }}" class="d-block w-100" ></a>
            <div class="carousel-caption d-none d-md-block">
                <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><h1 class="pag3">Consult an expert's opinion</h1></a>
                <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><p>Come to the office for your free visit</p></a>
