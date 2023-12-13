@@ -52,9 +52,9 @@ def login():
 
             else:
                 session['Role'] = "user"
-
             login_user(User(str(username), session.get('Role')), remember =  bool(remember.lower() == 'true'))
             session['user_data'] = authentication.getDate()
+            session.permanent = bool(remember.lower() == 'true')
             return jsonify({'redirect': url_for('homepage')})
 
         else:
@@ -66,6 +66,7 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
+    session.clear()
     logout_user()
     return redirect(url_for("login"))
 
@@ -73,13 +74,13 @@ def logout():
 @app.route('/homepage')
 @login_required
 def homepage():
+    print(current_user.getRole())
     return render_template('homepage.html')
 
 @app.route('/account')
 @login_required
 def account():
-    authentication = session['user_data']
-    return render_template('MyAccount.html', authentication = authentication)
+    return render_template('MyAccount.html', authentication = session['user_data'])
 
 @app.route('/myprescription')
 @login_required
