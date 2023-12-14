@@ -74,7 +74,6 @@ def logout():
 @app.route('/homepage')
 @login_required
 def homepage():
-    print(current_user.getRole())
     return render_template('homepage.html')
 
 @app.route('/account')
