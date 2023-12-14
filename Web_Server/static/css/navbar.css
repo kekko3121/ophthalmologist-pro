@@ -121,4 +121,7 @@
     .logout-btn {
         margin-top: 20px; /* Puoi regolare questo valore in base alle tue esigenze */
     }
+    .navbar {
+        position: static;
+    }
 }
