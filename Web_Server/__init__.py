@@ -5,6 +5,7 @@ from DB import DB
 from dotenv import load_dotenv
 from User import User
 import os
+import atexit
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -93,6 +94,8 @@ def newprescription():
         return render_template('NewPrescription.html')
     else:
         return redirect(url_for("homepage"))
+
+atexit.register(db.closeConn)
 
 #settings server ip and port
 if __name__ == '__main__':
