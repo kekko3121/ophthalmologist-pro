@@ -87,10 +87,15 @@ def account():
 def myprescription():
     return render_template('MyPrescription.html')
 
-@app.route('/newprescription')
+@app.route('/newprescription', methods = ['GET', 'POST'])
 @login_required
 def newprescription():
     if current_user.getRole() == 'doctor':
+        if request.method == 'POST':
+            data = request.form
+            db.set_patient(data)
+            return redirect(url_for("newprescription"))
+        
         return render_template('NewPrescription.html')
     else:
         return redirect(url_for("homepage"))

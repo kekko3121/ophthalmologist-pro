@@ -18,9 +18,12 @@ class DB():
             print(f"Error during connection closure: {e}")
 
     def is_Doctor(self, cf):
-        self.cursor.execute("SELECT CF FROM MEDICO WHERE CF = :cf", cf = cf)
+        self.cursor.execute("SELECT CF FROM DOCTOR WHERE CF = :cf", cf = cf)
         result = self.cursor.fetchone()
         if result:
             return True
         else:
             return False
+    
+    def set_patient(self, data):
+        self.cursor.execute("INSERT INTO PATIENT VALUES (:cf, :name, :surname)", cf = data.get("cf"), name = data.get("firstname"), surname = data.get("lastname"))
