@@ -93,7 +93,7 @@ def newprescription():
     if current_user.getRole() == 'doctor':
         if request.method == 'POST':
             data = request.form
-            db.set_patient(data)
+            print(data)
             return redirect(url_for("newprescription"))
         
         return render_template('NewPrescription.html')

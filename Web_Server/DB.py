@@ -26,4 +26,15 @@ class DB():
             return False
     
     def set_patient(self, data):
-        self.cursor.execute("INSERT INTO PATIENT VALUES (:cf, :name, :surname)", cf = data.get("cf"), name = data.get("firstname"), surname = data.get("lastname"))
+        try: 
+            self.cursor.execute("INSERT INTO PATIENT VALUES (:cf, :firstname, :surname)", cf = data.get("cf"), firstname = data.get("firstname"), surname = data.get("lastname"))
+            self.conn.commit()
+        except Exception as e:
+            self.conn.rollback()  # Roll back the transaction in case of an error.
+    
+    def set_prescription(self, data):
+        try: 
+            self.cursor.execute("INSERT INTO PATIENT VALUES (:cf, :firstname, :surname)", cf = data.get("cf"), firstname = data.get("firstname"), surname = data.get("lastname"))
+            self.conn.commit()
+        except Exception as e:
+            self.conn.rollback()  # Roll back the transaction in case of an error.
