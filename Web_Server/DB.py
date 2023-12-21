@@ -32,14 +32,29 @@ class DB():
         except Exception as e:
             self.conn.rollback()  # Roll back the transaction in case of an error.
     
-    def set_prescription(self, data, cf_med):
-        try: 
-            self.cursor.execute("""INSERT INTO PRESCRIPTION (PRESCRIPTION_DATE, LEFT_AXLE, RIGHT_AXLE, LEFT_SPHERE, 
-                                RIGHT_SPHERE, LEFT_CYLINDER, RIGHT_CYLINDER, PRESCRIPTION_DUR, INTERPUPILLARY_DIST, 
-                                SEMIDAV, CORNEAL_APEX_DIST, PANTHOSCOPIC_ANGLE, INSET, LENS_TYPE, TREATMENT, CF_PAZ) 
-                                VALUES (SYSDATE, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, 
-                                :right_cylinder, 1, :interpupillary, :semidav, :corneal, :panthoscopic, :inset, :lens, :tratment, :cf)""",
-                                left_axle = data.)
+    def set_prescription(self, data):
+        try:
+            self.cursor.execute("""INSERT INTO PRESCRIPTION (PRESCRIPTION_DATE, LEFT_AXLE, RIGHT_AXLE, LEFT_SPHERE, RIGHT_SPHERE, LEFT_CYLINDER, 
+                                RIGHT_CYLINDER, PRESCRIPTION_DUR, INTERPUPILLARY_DIST, SEMIDAV, CORNEAL_APEX_DIST, PANTHOSCOPIC_ANGLE, INSET, 
+                                LENS_TYPE, CF_PAZ) VALUES (SYSDATE, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, 
+                                :right_cylinder, 1, :interpupillary, :semidav, :corneal, :panthoscopic, :inset, :lens, :cf)""", 
+                                right_sphere=data.get("sferoSelect"), right_cylinder=data.get("sferoSelect1"), right_axle=data.get("sferoSelect2"),
+                                left_sphere=data.get("sferoSelect3"), left_cylinder=data.get("sferoSelect4"), left_axle=data.get("sferoSelect5"),
+                                interpupillary=data.get("interpupillary"), semidav=data.get("semidav"), corneal=data.get("corneal"),
+                                panthoscopic=data.get("panthoscopic"), inset=data.get("inset"), lens=data.get("lens"), cf=data.get("cf"))
+
             self.conn.commit()
+                
+        except Exception as e:
+            self.conn.rollback()  # Roll back the transaction in case of an error.
+
+            
+    def set_med(self, cf_med):
+        try:
+            self.cursor.execute("SELECT MAX(NUM_PRESCRIPTION) FROM PRESCRIPTION")
+            self.cursor.execute("INSERT INTO PRESCRIBES VALUES (:cf, :num)", cf = cf_med, num = self.cursor.fetchone()[0])
+
+            self.conn.commit()
+
         except Exception as e:
             self.conn.rollback()  # Roll back the transaction in case of an error.
