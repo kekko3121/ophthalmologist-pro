@@ -25,31 +25,48 @@ class DB():
         else:
             return False
     
-    def set_patient(self, data):
+    def ins_patient(self, data):
         try: 
             self.cursor.execute("INSERT INTO PATIENT VALUES (:cf, :firstname, :surname)", cf = data.get("cf"), firstname = data.get("firstname"), surname = data.get("lastname"))
             self.conn.commit()
         except Exception as e:
             self.conn.rollback()  # Roll back the transaction in case of an error.
     
-    def set_prescription(self, data):
+    def ins_prescription(self, data):
         try:
-            self.cursor.execute("""INSERT INTO PRESCRIPTION (PRESCRIPTION_DATE, LEFT_AXLE, RIGHT_AXLE, LEFT_SPHERE, RIGHT_SPHERE, LEFT_CYLINDER, 
-                                RIGHT_CYLINDER, PRESCRIPTION_DUR, INTERPUPILLARY_DIST, SEMIDAV, CORNEAL_APEX_DIST, PANTHOSCOPIC_ANGLE, INSET, 
-                                LENS_TYPE, CF_PAZ) VALUES (SYSDATE, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, 
-                                :right_cylinder, 1, :interpupillary, :semidav, :corneal, :panthoscopic, :inset, :lens, :cf)""", 
-                                right_sphere=data.get("sferoSelect"), right_cylinder=data.get("sferoSelect1"), right_axle=data.get("sferoSelect2"),
-                                left_sphere=data.get("sferoSelect3"), left_cylinder=data.get("sferoSelect4"), left_axle=data.get("sferoSelect5"),
+            self.cursor.execute("""INSERT INTO PRESCRIPTION (PRESCRIPTION_DATE, PRESCRIPTION_DUR, INTERPUPILLARY_DIST, SEMIDAV, CORNEAL_APEX_DIST, 
+                                PANTHOSCOPIC_ANGLE, INSET, LENS_TYPE, CF_PAZ)
+                                VALUES (SYSDATE, ADD_MONTHS(SYSDATE, 1), :interpupillary, :semidav, :corneal, :panthoscopic, :inset, :lens, :cf)""",
                                 interpupillary=data.get("interpupillary"), semidav=data.get("semidav"), corneal=data.get("corneal"),
                                 panthoscopic=data.get("panthoscopic"), inset=data.get("inset"), lens=data.get("lens"), cf=data.get("cf"))
 
+            result = self.cursor.execute("SELECT NUM_PRESCRIPTION_INC.CURRVAL FROM dual")
+            
+            self.conn.execute("INSERT INTO FAR VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
+                              num_prescr = result.fetchone()[0], right_sphere=data.get("sferoSelect"), right_cylinder=data.get("sferoSelect1"), right_axle=data.get("sferoSelect2"),
+                              left_sphere=data.get("sferoSelect3"), left_cylinder=data.get("sferoSelect4"), left_axle=data.get("sferoSelect5"))
+
+            self.conn.execute("INSERT INTO DURATIONS VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
+                              num_prescr = result.fetchone()[0], right_sphere=data.get("sferoSelect6"), right_cylinder=data.get("sferoSelect7"), right_axle=data.get("sferoSelect8"),
+                              left_sphere=data.get("sferoSelect9"), left_cylinder=data.get("sferoSelect10"), left_axle=data.get("sferoSelect11"))
+
+            self.conn.execute("INSERT INTO NEAR VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
+                              num_prescr = result.fetchone()[0], right_sphere=data.get("sferoSelect12"), right_cylinder=data.get("sferoSelect13"), right_axle=data.get("sferoSelect14"),
+                              left_sphere=data.get("sferoSelect15"), left_cylinder=data.get("sferoSelect16"), left_axle=data.get("sferoSelect17"))
+
+            self.conn.execute("INSERT INTO NOTE VALUES(:num_prescr, :othernote, :finalnote)", num_prescr = result.fetchone()[0], 
+                              othernote = data.get("othernote"), finalnote = data.get("finalnote"))
+
+            self.conn.execute("INSERT INTO TREATMENT VALUES(:num_prescr, :hard, :antireflective, :satin, :performance)", num_prescr = result.fetchone()[0],
+                              hard = int(data.get("hard", "0")), antireflective = int(data.get("antireflective", "0")), satin = int(data.get("satin", "0")), 
+                              performance = int(data.get("performance", "0")))
+
             self.conn.commit()
-                
+
         except Exception as e:
             self.conn.rollback()  # Roll back the transaction in case of an error.
 
-            
-    def set_med(self, cf_med):
+    def conn_med(self, cf_med):
         try:
             self.cursor.execute("SELECT MAX(NUM_PRESCRIPTION) FROM PRESCRIPTION")
             self.cursor.execute("INSERT INTO PRESCRIBES VALUES (:cf, :num)", cf = cf_med, num = self.cursor.fetchone()[0])

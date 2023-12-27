@@ -1,11 +1,11 @@
+import os
+import atexit
 from flask import Flask, render_template, redirect, request, url_for, jsonify, session
 from Auth import Auth
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
-from DB import DB
 from dotenv import load_dotenv
+from DB import DB
 from User import User
-import os
-import atexit
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -93,9 +93,10 @@ def newprescription():
     if current_user.getRole() == 'doctor':
         if request.method == 'POST':
             data = request.form
-            db.set_patient(data)
-            db.set_prescription(data)
-            db.set_med(current_user.get_id())
+            print(data)
+            db.ins_patient(data)
+            db.ins_prescription(data)
+            db.conn_med(current_user.get_id())
             
             return redirect(url_for("newprescription"))
         
