@@ -55,11 +55,11 @@
         <form method = "POST">
             <div class="container-fluid" style="margin-top: 30px;">
                 <div class="mb-3">
-                    <label for="firstname" class="form-label">Patient Name</label>
+                    <label for="firstname" class="form-label">PATIENT NAME</label>
                     <input type="text" class="form-control" name = "firstname" placeholder = "Name">
                 </div>
                 <div class="mb-3">
-                    <label for="lastname" class="form-label">Patient Surname</label>
+                    <label for="lastname" class="form-label">PATIENT SURNAME</label>
                     <input type="text" class="form-control" name = "lastname" placeholder="Surname">
                 </div>
                 <div class="mb-3">
@@ -67,8 +67,8 @@
                     <input type="text" class="form-control" name = "cf" maxlength="16">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Other data to note</label>
-                    <textarea class="form-control" rows="3"></textarea>
+                    <label for="othernote" class="form-label">OTHER DATA TO NOTE</label>
+                    <textarea class="form-control" rows="3" name="othernote"></textarea>
                 </div>
             </div>
 
@@ -274,19 +274,19 @@
                     <label for="glasses" class="form-label">TYPE EYEGLASSES</label>
                     <input type="text" class="form-control" name = "eyeglasses">
                 </div>
-                    <h3  style="font-family: Anonymous Pro, monospace; margin-top: 60px;" id="exampleFormControlInput01" class="form-label">TRATTAMENTO</h3>
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined1" name = "hard" autocomplete="off">
+                    <h3  style="font-family: Anonymous Pro, monospace; margin-top: 60px;" id="exampleFormControlInput01" class="form-label">TREATMENT</h3>
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined1" name = "hard" autocomplete="off" value="1">
                     <label class="btn btn-outline-primary" for="btn-check-outlined1">HARD</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined2" name = "antireflective" autocomplete="off">
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined2" name = "antireflective" autocomplete="off" value="1">
                     <label class="btn btn-outline-primary" for="btn-check-outlined2">ANTIREFLECTIVE</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined3" name = "satin" autocomplete="off">
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined3" name = "satin" autocomplete="off" value="1">
                     <label class="btn btn-outline-primary" for="btn-check-outlined3">SATIN</label>
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined4" name = "performance" autocomplete="off">
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined4" name = "performance" autocomplete="off" value="1">
                     <label class="btn btn-outline-primary" for="btn-check-outlined4">PERFORMANCE400</label>
 
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">NOTE FINALI</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                    <label for="finalnote" class="form-label">FINAL NOTE</label>
+                    <textarea class="form-control" name="finalnote" rows="3"></textarea>
                 </div>
 
                 <div style="text-align: center">
