@@ -85,7 +85,7 @@ def account():
 @app.route('/myprescription')
 @login_required
 def myprescription():
-    return render_template('MyPrescription.html')
+    return render_template('MyPrescription.html', authentication = session['user_data'], prescription = db.searchPresciption(current_user.get_id()))
 
 @app.route('/newprescription', methods = ['GET', 'POST'])
 @login_required
@@ -93,7 +93,6 @@ def newprescription():
     if current_user.getRole() == 'doctor':
         if request.method == 'POST':
             data = request.form
-            print(data)
             db.ins_patient(data)
             db.ins_prescription(data)
             db.conn_med(current_user.get_id())
