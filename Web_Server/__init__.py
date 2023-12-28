@@ -93,7 +93,6 @@ def newprescription():
     if current_user.getRole() == 'doctor':
         if request.method == 'POST':
             data = request.form
-            print(data)
             db.ins_patient(data)
             db.ins_prescription(data)
             db.conn_med(current_user.get_id())

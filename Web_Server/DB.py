@@ -40,24 +40,28 @@ class DB():
                                 interpupillary=data.get("interpupillary"), semidav=data.get("semidav"), corneal=data.get("corneal"),
                                 panthoscopic=data.get("panthoscopic"), inset=data.get("inset"), lens=data.get("lens"), cf=data.get("cf"))
 
-            result = self.cursor.execute("SELECT NUM_PRESCRIPTION_INC.CURRVAL FROM dual")
-            
-            self.conn.execute("INSERT INTO FAR VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
-                              num_prescr = result.fetchone()[0], right_sphere=data.get("sferoSelect"), right_cylinder=data.get("sferoSelect1"), right_axle=data.get("sferoSelect2"),
-                              left_sphere=data.get("sferoSelect3"), left_cylinder=data.get("sferoSelect4"), left_axle=data.get("sferoSelect5"))
 
-            self.conn.execute("INSERT INTO DURATIONS VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
-                              num_prescr = result.fetchone()[0], right_sphere=data.get("sferoSelect6"), right_cylinder=data.get("sferoSelect7"), right_axle=data.get("sferoSelect8"),
+            self.cursor.execute("SELECT NUM_PRESCRIPTION_INC.CURRVAL FROM dual")
+            
+            result = self.cursor.fetchone()[0]
+            
+            self.cursor.execute("INSERT INTO FAR VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)", 
+                              num_prescr = result, right_sphere = float(data.get("sferoSelect")), right_cylinder = float(data.get("sferoSelect1")), 
+                              right_axle = float(data.get("sferoSelect2")), left_sphere = float(data.get("sferoSelect3")), left_cylinder = float(data.get("sferoSelect4")), 
+                              left_axle = float(data.get("sferoSelect5")))
+
+            self.cursor.execute("INSERT INTO DURATIONS VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
+                              num_prescr = result, right_sphere=data.get("sferoSelect6"), right_cylinder=data.get("sferoSelect7"), right_axle=data.get("sferoSelect8"),
                               left_sphere=data.get("sferoSelect9"), left_cylinder=data.get("sferoSelect10"), left_axle=data.get("sferoSelect11"))
 
-            self.conn.execute("INSERT INTO NEAR VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
-                              num_prescr = result.fetchone()[0], right_sphere=data.get("sferoSelect12"), right_cylinder=data.get("sferoSelect13"), right_axle=data.get("sferoSelect14"),
+            self.cursor.execute("INSERT INTO NEAR VALUES(:num_prescr, :left_axle, :right_axle, :left_sphere, :right_sphere, :left_cylinder, :right_cylinder)",
+                              num_prescr = result, right_sphere=data.get("sferoSelect12"), right_cylinder=data.get("sferoSelect13"), right_axle=data.get("sferoSelect14"),
                               left_sphere=data.get("sferoSelect15"), left_cylinder=data.get("sferoSelect16"), left_axle=data.get("sferoSelect17"))
 
-            self.conn.execute("INSERT INTO NOTE VALUES(:num_prescr, :othernote, :finalnote)", num_prescr = result.fetchone()[0], 
+            self.cursor.execute("INSERT INTO NOTE VALUES(:num_prescr, :othernote, :finalnote)", num_prescr = result, 
                               othernote = data.get("othernote"), finalnote = data.get("finalnote"))
 
-            self.conn.execute("INSERT INTO TREATMENT VALUES(:num_prescr, :hard, :antireflective, :satin, :performance)", num_prescr = result.fetchone()[0],
+            self.cursor.execute("INSERT INTO TREATMENT VALUES(:num_prescr, :hard, :antireflective, :satin, :performance)", num_prescr = result,
                               hard = int(data.get("hard", "0")), antireflective = int(data.get("antireflective", "0")), satin = int(data.get("satin", "0")), 
                               performance = int(data.get("performance", "0")))
 
