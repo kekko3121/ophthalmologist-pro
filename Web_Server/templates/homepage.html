@@ -5,142 +5,84 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>My Opthamologist</title>
         <link href="{{ url_for('static', filename = 'css/navbar.css') }}" rel = "stylesheet" type = "text/css">
+        <link href="{{ url_for('static', filename = 'css/homepage.css') }}" rel = "stylesheet" type = "text/css">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet"/>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <style>
-            /* CSS for default body styles */
-            body {
-                font-family: "Montserrat", sans-serif;
-                color: black;
-                opacity: 100%;
-                margin: 0; /* Remove default body margin */
-                padding: 0; /* Remove default body padding */
-                overflow: hidden;
-            }
-
-            /* Media query for smaller devices */
-            @media only screen and (max-width: 768px) {
-                body {
-                    /* Add specific styles for smaller screens */
-                    font-size: 14px; /* Example: Adjust font size for smaller devices */
-                }
-
-                /* Add other CSS rules specific to smaller devices if needed */
-            }
-
-            a{
-                text-decoration: none; /* Rimuove la sottolineatura */
-                color: #333; /* Imposta il colore del testo del link */
-            }
-            
-            h1{
-                font-family: "Anonymous Pro", monospace;
-                color: black;
-                opacity: 100%;
-            }
-
-            p{
-                font-family: "Montserrat", sans-serif;
-                color: black;
-                opacity: 100%;
-            }
-
-            .carousel-control-prev,
-            .carousel-control-next {
-                top: 50%; /* Posiziona le frecce a metà dell'altezza del carousel */
-                transform: translateY(-50%); /* Corregge l'allineamento verticale */
-            }
-
-        </style>
     </head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" alt="Logo" width="40" height="40"> My Opthamologist</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MyOttiglass</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/account">MyAccount</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Prescriptions</a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="/myprescription">MyPrescriptions</a></li>
-                            <li><hr class="dropdown-divider" id = "row"></li>
-                            <li><a class="dropdown-item" href="/newprescription" id = "prescriptions">New prescriptions</a></li>
+    <body>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename = 'images/home_logo.jpg') }}" alt="Logo" width="40" height="40"> My Opthamologist</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MyOttiglass</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/account">MyAccount</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Prescriptions</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="/myprescription">MyPrescriptions</a></li>
+                                    <li><hr class="dropdown-divider" id = "row"></li>
+                                    <li><a class="dropdown-item" href="/newprescription" id = "prescriptions">New prescriptions</a></li>
 
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link logout-btn" aria-current="page" href="/logout">Logout<img style="margin-left: 20px; width:30px; height: 30px;" src="{{ url_for('static', filename = 'images/logout.png') }}" alt="logout"></a>
-                        </li>
-                    </ul>
+                        <form class="d-flex mt-3" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </form>
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link logout-btn" aria-current="page" href="/logout">Logout<img style="margin-left: 20px; width:30px; height: 30px;" src="{{ url_for('static', filename = 'images/logout.png') }}" alt="logout"></a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
             </div>
+        </nav>
+        <div class = "container">
+            <header class = "header">
+                <div class = "content">
+                    <h1><span>Get Quick</span><br />Ophthalmologist pro</h1>
+                    <p>
+                        Welcome to ophthalmologist pro, your dedicated platform for creating and managing eye examination prescriptions with ease. 
+                        Our user-friendly interface allows healthcare professionals to generate new eye prescriptions seamlessly. 
+                        Patients can conveniently access and review their prescriptions, ensuring a smooth and efficient experience. 
+                        Empower yourself with [Nome del tuo sito] for streamlined eye care management, putting your vision health at the forefront.
+                    </p>
+                </div>
+                <div class = "image">
+                    <span class = "image__bg"></span>
+                    <img src = "{{ url_for('static', filename = 'images/visitaoculistica.jpg') }}" alt="eye examination">
+                    <div class = "image__content image__content__1">
+                        <span><i class="ri-user-3-line"></i></span>
+                        <div class="details">
+                            <h4>1520+</h4>
+                            <p>Active Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
         </div>
-    </div>
-</nav>
-<div id="carouselExampleCaptions" class="carousel slide">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <a href="https://ottiglass.com/" ><img src="{{ url_for('static', filename = 'images/ottica.jpg') }}" class="d-block w-100" alt="Ottica"></a>
-            <div class="carousel-caption d-none d-md-block">
-                <a href="https://ottiglass.com/" ><h1 class="pag1">Come and Discover our products</h1></a>
-                <a href="https://ottiglass.com/" ><p>Join us in store and immerse yourself in our fantastic world</p></a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <a href="index.html" ><img src="{{ url_for('static', filename = 'images/prescrizione.jpg') }}" class="d-block w-100" alt = "prescriptions"></a>
-            <div class="carousel-caption d-none d-md-block">
-                <a href="index.html" ><h1 class="pag2">View your prescriptions online</h1></a>
-                <a href="index.html" ><p>Your prescriptions always accessible online on our my opthqamologist portal</p></a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><img src="{{ url_for('static', filename = 'images/visitaoculistica.jpg') }}" class="d-block w-100" alt = "eye examination"  width="500px" height="580px"></a>
-           <div class="carousel-caption d-none d-md-block">
-               <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><h1 class="pag3">Consult an expert's opinion</h1></a>
-               <a href="https://ottiglass.com/products/controllo-della-vista-gratuito" ><p>Come to the office for your free visit</p></a>
-            </div>
-        </div>
-    </div>
-    <button style="font-size: 30em; color: black; background-color: transparent; border: none;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-        <span style="background-color: black;" class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button style="font-size: 30em; color: black; background-color: transparent; border: none;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-        <span style="background-color: black" class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>    
-</div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function(){
-        // Read the condition value directly from Flask
-        let user = "{{current_user.getRole()}}";
-        // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
-        if (user != 'doctor') {
-            document.getElementById("row").style.display = "none";
-            document.getElementById("prescriptions").style.display = "none";
-        }
-    });
-</script>
-</body>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                // Read the condition value directly from Flask
+                let user = "{{current_user.getRole()}}";
+                // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
+                if (user !== 'doctor') {
+                    document.getElementById("row").style.display = "none";
+                    document.getElementById("prescriptions").style.display = "none";
+                }
+            });
+        </script>
+    </body>
 </html>
