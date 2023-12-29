@@ -2,7 +2,7 @@ from flask_login import UserMixin
 
 #A custom class that extends the UserMixin class provided by Flask-Login.
 class User(UserMixin):
-    def __init__(self, username, role = None):
+    def __init__(self, username, role):
         self.__id = username
         self.__role = role
     
