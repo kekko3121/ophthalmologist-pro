@@ -16,7 +16,7 @@
 
 body{
     font-family: 'Roboto', sans-serif;
-    padding-top: 40px;
+    padding-top: 5%;
 }
 
 .container{
@@ -93,12 +93,12 @@ body{
 }
 
 .image__content__1{
-    transform: translate(calc(-10% - 9rem), calc(80%));
+    transform: translate(calc(-10% - 10rem), calc(90%));
 }
 
 .image__content__1 span{
     padding: 10px 12px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--primary-color);
     background-color: #defcf4;
     border-radius: 100%;
@@ -121,7 +121,12 @@ body{
 }
 
 .github span{
-    font-size: 2rem;
+    font-size: 3rem;
+}
+
+.github a{
+    color: inherit;
+    text-decoration: none;
 }
 
 @media (max-width: 880px) {
@@ -146,15 +151,31 @@ body{
         font-size: 1.5rem; /* Dimensione del carattere originale su schermi più grandi */
     }
 
+    .image__content{
+        padding: 0.5rem 1rem;
+        gap: 0;
+        margin-left: 20px;
+    }
+
     .image__content__1{
-        transform: translate(calc(-10% - 5rem), calc(80%));
+        transform: translate(calc(-10% - 8rem), calc(60%));
     }
 }
 
 @media (max-width: 500px) {
     .image__bg {
-        width: 200px; /* Larghezza ridotta per schermi più piccoli */
-        height: 200px; /* Altezza ridotta per schermi più piccoli */
+        width: 170px; /* Larghezza ridotta per schermi più piccoli */
+        height: 170px; /* Altezza ridotta per schermi più piccoli */
         margin-left: 20px;
+    }
+    
+    .image__content{
+        padding: 0.5rem 1rem;
+        gap: 0;
+        margin-left: 20px;
+    }
+
+    .image__content__1{
+        transform: translate(calc(-10% - 5rem), calc(50%));
     }
 }
