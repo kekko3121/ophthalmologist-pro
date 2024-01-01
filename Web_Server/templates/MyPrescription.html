@@ -104,14 +104,14 @@
                 <th scope="col">download</th>
             </tr>
             </thead>
-            <tbody>
+           <tbody>
                 {%for x in prescription%}
                 <tr>
                     <th scope="row">{{loop.index}}</th>
-                    <td>{{x[0]}}</td>
                     <td>{{x[1]}}</td>
                     <td>{{x[2]}}</td>
-                    <td><button  type="button" class="btn btn-outline-primary">DOWNLOAD PDF</button></td>
+                    <td>{{x[3]}}</td>
+                    <td><a  href = "/download/pdf/{{x[0]}}"><button  type="button" class="btn btn-outline-primary">DOWNLOAD PDF</button></a></td>
                 </tr>
                 {%endfor%}
             </tbody>

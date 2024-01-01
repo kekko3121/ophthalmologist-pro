@@ -82,10 +82,30 @@ class DB():
 
     def searchPresciption(self, cf):
         try:
-            self.cursor.execute("""SELECT TO_DATE(PRESCRIPTION_DATE), TO_DATE(PRESCRIPTION_DUR), CF_MED FROM PRESCRIPTION
+            self.cursor.execute("""SELECT PRESCRIPTION.NUM_PRESCRIPTION, TO_DATE(PRESCRIPTION_DATE), TO_DATE(PRESCRIPTION_DUR), CF_MED FROM PRESCRIPTION
                                 JOIN PRESCRIBES ON PRESCRIPTION.NUM_PRESCRIPTION = PRESCRIBES.NUM_PRESCRIPTION
                                 WHERE CF_PAZ = :cf OR CF_MED = :cf""", cf = cf)
         except Exception as e:
-            pass
+            print(e)
         
         return self.cursor.fetchall()
+    
+    def pdfDownload(self, id):
+        try:
+            self.cursor.execute("""SELECT PRESCRIPTION.*, FIRSTNAME, LASTNAME, CF_MED, HARD, ANTIREFLECTIVE, SATIN, PERFORMANCE, OTHER_NOTE, 
+                                FINAL_NOTE, FAR.LEFT_AXLE, FAR.RIGHT_AXLE, FAR.LEFT_SPHERE, FAR.RIGHT_SPHERE, FAR.LEFT_CYLINDER, 
+                                FAR.RIGHT_CYLINDER, DURATIONS.LEFT_AXLE, DURATIONS.RIGHT_AXLE, DURATIONS.LEFT_SPHERE, DURATIONS.RIGHT_SPHERE, 
+                                DURATIONS.LEFT_CYLINDER, DURATIONS.RIGHT_CYLINDER, NEAR.LEFT_AXLE, NEAR.RIGHT_AXLE, NEAR.LEFT_SPHERE, 
+                                NEAR.RIGHT_SPHERE, NEAR.LEFT_CYLINDER, NEAR.RIGHT_CYLINDER FROM PRESCRIPTION
+                                JOIN PRESCRIBES ON PRESCRIPTION.NUM_PRESCRIPTION = PRESCRIBES.NUM_PRESCRIPTION
+                                JOIN PATIENT ON PRESCRIPTION.CF_PAZ = PATIENT.CF
+                                LEFT JOIN TREATMENT ON PRESCRIPTION.NUM_PRESCRIPTION = TREATMENT.NUM_PRESCRIPTION
+                                LEFT JOIN NOTE ON PRESCRIPTION.NUM_PRESCRIPTION = NOTE.NUM_PRESCRIPTION
+                                LEFT JOIN NEAR ON PRESCRIPTION.NUM_PRESCRIPTION = NEAR.NUM_PRESCRIPTION
+                                LEFT JOIN DURATIONS ON PRESCRIPTION.NUM_PRESCRIPTION = DURATIONS.NUM_PRESCRIPTION
+                                LEFT JOIN FAR ON PRESCRIPTION.NUM_PRESCRIPTION = FAR.NUM_PRESCRIPTION
+                                WHERE PRESCRIPTION.NUM_PRESCRIPTION = :id""", id = id)
+        except Exception as e:
+            print(e)
+        
+        return self.cursor.fetchone()

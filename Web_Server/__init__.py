@@ -6,6 +6,7 @@ from flask_login import login_user, login_required, logout_user, current_user, L
 from dotenv import load_dotenv
 from DB import DB
 from User import User
+from fpdf import FPDF
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -102,6 +103,12 @@ def newprescription():
         return render_template('NewPrescription.html')
     else:
         return redirect(url_for("homepage"))
+
+@app.route('/download/pdf/<int:prescription_id>')
+def downloadPdf(prescription_id):
+    print(db.pdfDownload(prescription_id))
+    return "<h1>ciao<h1>"
+    
 
 atexit.register(db.closeConn)
 
