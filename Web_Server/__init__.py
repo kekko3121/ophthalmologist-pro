@@ -1,12 +1,13 @@
 import os
 import atexit
-from flask import Flask, render_template, redirect, request, url_for, jsonify, session
+from flask import Flask, render_template, redirect, request, url_for, jsonify, session, send_file
 from Auth import Auth
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 from dotenv import load_dotenv
 from DB import DB
 from User import User
-from fpdf import FPDF
+import pdfkit
+from io import BytesIO
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -105,10 +106,11 @@ def newprescription():
         return redirect(url_for("homepage"))
 
 @app.route('/download/pdf/<int:prescription_id>')
+@login_required
 def downloadPdf(prescription_id):
-    print(db.pdfDownload(prescription_id))
-    return "<h1>ciao<h1>"
-    
+    x = db.pdfDownload(prescription_id)
+    html_content = render_template('pdfContent.html', x = x)
+    return send_file(BytesIO(pdfkit.from_string(html_content, False)), mimetype='application/pdf', as_attachment=True, download_name = f"prescription_{x[1]}.pdf")
 
 atexit.register(db.closeConn)
 
