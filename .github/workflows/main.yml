@@ -1,26 +1,19 @@
 name: oracledb
-on: push
-
+on:
+  push:
+    branches: [ main ]
 jobs:
-  # Label of the container job
-  container-job:
-    # Containers must run in Linux based operating systems
+  container-test-job:
     runs-on: ubuntu-latest
-
-    # Service containers to run with `container-job`
-    services:
-
-      # Oracle service (label used to access the service container)
-      oracle:
-
-        # Docker Hub image (feel free to change the tag "latest" to any other available one)
-        image: container-registry.oracle.com/database/free:latest
-
-        # Provide passwords and other environment variables to container
-        env:
-          ORACLE_PWD: ${{ secrets.DBPS }}
-        # Forward Oracle port
-        ports:
-          - 1521:1521
-        volumes:
+    container:
+      image: container-registry.oracle.com/database/free:latest
+      env:
+        ORACLE_PWD: ${{ secrets.DBPS }}
+      ports:
+        - 1521:1521
+      volumes:
         - oracle-data:/opt/oracle/oradata
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+
