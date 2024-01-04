@@ -1,4 +1,4 @@
-name: Oracledb
+name: oracledb
 on: push
 
 jobs:
