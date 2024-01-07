@@ -115,5 +115,5 @@ def downloadPdf(prescription_id):
 atexit.register(db.closeConn)
 
 #settings server ip and port
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port = 80)
+#if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port = 80)

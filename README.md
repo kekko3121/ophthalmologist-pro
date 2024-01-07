@@ -11,6 +11,36 @@ We thank you for your attention.
 
 For more information you can see [here](https://www.canva.com/design/DAFzecUFK9o/LKdGAOtrRE8llqDKK-iyHQ/edit?utm_content=DAFzecUFK9o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton "Project slides")
 
+## Installation
+
+Install my webapp with python
+
+```bash
+  python3 install pip
+  cd ophthalmologist-pro
+  pip3 install -r requirements.txt
+```
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/kekko3121/ophthalmologist-pro.git
+```
+
+Go to the project directory
+
+```bash
+  cd ophthalmologist-pro/Web_Server/
+```
+
+Start the server
+
+```bash
+  gunicorn -b <ip>:<port> run:app
+```
+
 ## Authors
 
 - [@kekko3121](https://github.com/kekko3121)
@@ -20,4 +50,3 @@ For more information you can see [here](https://www.canva.com/design/DAFzecUFK9o
 ## License
 
 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-

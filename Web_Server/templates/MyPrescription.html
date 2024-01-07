@@ -119,6 +119,16 @@
         <div class="otti" style="position:absolute; top:20%; left: 82%">
             Opthamologist PRO <br> by OTTIGLASS</br>
         </div>
-
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                // Read the condition value directly from Flask
+                let user = "{{current_user.getRole()}}";
+                // If your condition is true, hide the elements with the IDs "row" and "prescriptions"
+                if (user !== 'doctor') {
+                    document.getElementById("row").style.display = "none";
+                    document.getElementById("prescriptions").style.display = "none";
+                }
+            });
+        </script>
     </body>
 </html>
