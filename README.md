@@ -13,6 +13,20 @@ For more information you can see [here](https://www.canva.com/design/DAFzecUFK9o
 
 ## Installation
 
+Before getting started, make sure you have the following dependencies installed:
+
+Debian:
+
+'''bash
+  sudo apt install wkhtmltopdf
+'''
+
+or Arch
+
+'''bash
+  yay -S wkhtmltopdf
+'''
+
 Install my webapp with python
 
 ```bash
