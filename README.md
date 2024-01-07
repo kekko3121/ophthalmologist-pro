@@ -17,15 +17,15 @@ Before getting started, make sure you have the following dependencies installed:
 
 Debian:
 
-'''bash
+```bash
   sudo apt install wkhtmltopdf
-'''
+```
 
 or Arch
 
-'''bash
+```bash
   yay -S wkhtmltopdf
-'''
+```
 
 Install my webapp with python
 
